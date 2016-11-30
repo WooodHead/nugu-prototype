@@ -1,0 +1,63 @@
+extends layout
+
+block content
+    main#main
+        ul#cards
+
+            //- domino status
+            li#domino.cd.status.domino.pink.lighten-1
+                div.cd-content
+                    div.background
+                        img( src="/images/test-domino.png" )
+                    header <i class="small material-icons">store</i>
+                    h5 Domino's Pizza가<br>주문되었습니다!
+                    p 포테이토 피자 + 콜라 1.5l
+
+            li.cd.tutorial.light-blue.lighten-2
+                div.cd-content
+                    header <i class="medium material-icons">library_music</i>
+                    p.quote 아리아,<br>음악 들려줘 :)
+
+                footer.cd-footer.light-blue.clear
+                    i.material-icons.fl.dis error
+                    a( href="/account" ).fr.dis 계정 연결이 필요합니다 >
+
+            li.cd.tutorial.indigo.lighten-2
+                div.cd-content
+                    header <i class="medium material-icons">today</i>
+                    p.quote 아리아, 굿모닝!
+                    p.desc NUGU와 하루를 시작해 보세용.<br>'오늘의 날씨, 일정, 뉴스'를 한번에 알려드립니당~
+
+                footer.cd-footer.clear.indigo
+                    i.material-icons.fl.dis error
+                    p.fr.dis 계정 연결이 필요합니다 >
+
+            li.cd.tutorial.pink.lighten-1
+                div.cd-content
+                    header <i class="medium material-icons">store</i>
+                    p.quote 아리아,<br>도미노 피자 시켜줘!
+                    p.desc2 '아리아, 포테이토 피자 시켜줘'<br>'아리아, 베이컨 체다치즈 나폴리 도우로 시켜줘'
+
+            li.cd.tutorial.pink.lighten-1
+                div.cd-content 주변 블럭과 관련 이벤트~
+
+            li.cd.tutorial.blue.lighten-1
+                div.cd-content
+                    header <i class="medium material-icons">settings_remote</i>
+                    p.quote 아리아,<br>거실 불좀 꺼줄래?
+                    p.desc2 '아리아, 포테이토 피자 시켜줘'<br>'아리아, 베이컨 체다치즈'
+                    p.desc NUGU와 하루를 시작해 보세용.<br>'오늘의 날씨, 일정, 뉴스'를 한번에 알려드립니당~
+
+                footer.cd-footer.blue.darken-1
+                    ul.action-list.tr
+                        li 스마트홈 알아보기 >
+                        li 스마트홈 연결 >
+            
+            li.cd.tutorial.red.lighten-1
+                div.cd-content
+                    header <i class="medium material-icons">loyalty</i>    
+                    p.quote 아리아,<br>기념일 말해줄래?
+                    p.desc '이번달엔 장모님 생신이 있고~ 결혼 2주년입니다~'
+                .clear.cd-ui-container
+                    i.material-icons.small.fr keyboard_arrow_down
+                

@@ -1,0 +1,89 @@
+- var navType = 'current'
+//- SNB
+ul#slide-out.side-nav
+    li
+        .userView
+            .background
+                img( src="/images/test.jpg" )
+            a( href="#!user" ): img( class="circle" src="/images/niffler.jpg" )
+            a( href="#!name" ): span( class="white-text name" ) Dae Kwan Song
+            a( href="#!email" ): span( class="white-text email" ) 4rhythms@gmail.com
+
+    if navType == 'current'
+        //- as-is
+        li: a( href="#!" ) 음성명령
+        li: a( href="#!" ) 텍스트명령
+        li: a( href="#!" ) 멜론
+        li: a( href="#!" ) 스마트 홈
+        li: a( href="#!" ) 도미노피자
+        li: a( href="#!" ) BBQ 치킨
+        li: a( href="#!" ) 팟빵
+        li: a( href="#!" ) 데일리 브리핑
+
+        li: a( href="#!" ) 알람
+        li: a( href="#!" ) 일정
+        li: a( href="#!" ) 긴급알림
+        li: a( href="#!" ) 무드등
+
+        li: a( href="#!" ) 설정
+        li: div.divider
+        li: a( href="#!" ).subheader NUGU 이용안내
+        li: a( class="waves-effect" href="#!" ) 공지사항
+        li: a( class="waves-effect" href="#!" ) 이벤트
+        li: a( class="waves-effect" href="#!" ) 이용안내
+        li: a( class="waves-effect" href="#!" ) 1:1문의
+        li: a( class="waves-effect" href="#!" ) 고객센터
+        li: a( class="waves-effect" href="#!" ) 이용약관
+
+    else
+        //- 2be
+        li: a( href="#!" ) <i class="material-icons">play_circle_filled</i> 음악
+        li: a( href="#!" ) <i class="material-icons">play_circle_filled</i> 쇼핑
+        li: a( href="#!" ) <i class="material-icons">radio</i> 데일리브리핑
+        li: a( href="#!" ) <i class="material-icons">settings</i> 설정
+
+
+        //- li: div.divider
+        //- li: a( class="subheader" ) <i class="material-icons">settings</i> 설정
+        //- li: a( class="waves-effect" href="#!" ) Third Link With Waves
+
+header#global-nav
+    nav
+        div.nav-wrapper
+            a( href="#" class="brand-logo center")#logo= title
+            
+            ul#nav-mobile.left
+                li: a( href="#" data-activates="slide-out" class="snb" ): i.material-icons menu
+
+            ul#nav-mobile2.right
+                li: a( href="#!" )#open-apps: i.material-icons apps
+
+#apps
+    .clear
+        a( href="#!" )#close-apps: i.material-icons.small clear
+    ul.apps-list
+        li.app-item
+            div.circle-item.light-blue.lighten-2
+                i.material-icons.medium.vertical-align music_note
+            span 뮤직
+        li.app-item
+            div.circle-item.blue.lighten-1
+                i.material-icons settings_remote
+            span 스마트홈
+        li.app-item
+            div.circle-item.red.lighten-1
+                i.material-icons video_library
+            span 미디어
+        li.app-item
+            div.circle-item.pink.lighten-1
+                i.material-icons motorcycle
+            span 주문/배달
+        li.app-item
+            div.circle-item.indigo.lighten-2
+                i.material-icons assignment_ind
+            span 개인비서
+        li.app-item
+            div.circle-item.orange.lighten-1
+                i.material-icons accessibility
+            span 유용한기능
+        
