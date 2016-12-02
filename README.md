@@ -1,1 +1,1 @@
-# color-by-sumally
+# NG prototype for planning

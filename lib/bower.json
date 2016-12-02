@@ -1,0 +1,22 @@
+{
+  "name": "nugu-prototype-bower",
+  "homepage": "https://github.com/a4banana/nugu-prototype",
+  "authors": [
+    "a4banana <apple4banana@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "gsap": "^1.19.0",
+    "hammerjs": "^2.0.8",
+    "materialize": "^0.97.8"
+  }
+}

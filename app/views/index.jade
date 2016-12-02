@@ -3,6 +3,11 @@ extends layout
 block content
     main#main
         ul#cards
+            li#test.cd.tutorial.light-blue.lighten-2
+                div.cd-content
+                    header <i class="medium material-icons">library_music</i>
+                    p.quote 아리아,<br> 팝송 들려줘~ :)
+                    p.desc 요런 기능은 어때용?
 
             //- domino status
             li#domino.cd.status.domino.pink.lighten-1
@@ -12,6 +17,111 @@ block content
                     header <i class="small material-icons">store</i>
                     h5 Domino's Pizza가<br>주문되었습니다!
                     p 포테이토 피자 + 콜라 1.5l
+            
+            //- Jin's cards
+
+            //- Jin: default( tutorial )
+            li.cd.tutorial.light-blue.lighten-2
+                div.cd-content
+                    header <i class="medium material-icons">library_music</i>
+                    div#quoteEx
+                        p.quote 아리아,<br>인기 음악 틀어줘
+                        p.quotes 아리아, 김광석의 사랑했지만 들려줘
+                        p.quotes 아리아, 이 노래 뭐야?
+
+                footer.cd-footer.light-blue.clear
+                    i.material-icons.fl.dis error
+                    a( href="/account" ).fr.dis 계정 연결하기 >
+            
+            //- Jin: Service card            
+            li.cd.tutorial.pink.lighten-1
+                div.cd-content
+                    header <i class="medium material-icons">store</i>
+                    p.quote 아리아,<br>피자 주문해줘
+                    p.quotes 아리아, 도미노 피자 언제와?
+                    p.quotes 아리아, 도미노 피자 주문상태 알려줘
+                footer.cd-footer.pink.darken-1
+                    p.desc2
+                        누구가 새롭게 시작한 피자 주문 서비스! 이제 아리아를 통해 맛있는 피자를 배달 시켜 보세요~ 첫 주문시 <b>웨지감자</b> 서비스 이벤트는 덤으로 챙길 수 있어요!
+                    a( href="#!" ).right.string-link.single 이벤트 보러가기
+            
+            //- Jin: Skills 카드
+            li.cd.tutorial.blue.lighten-1
+                div.cd-content
+                    header <i class="medium material-icons">local_taxi</i>
+                    p.quote 아리아,<br>'택시콜' 열어줘
+                    p.quotes 아리아, 오후 3시에 택시 불러줘
+                    p.quotes 아리아, 5시에 예약한 콜택시 취소해줘
+            
+            //- Jin's card end
+
+
+            //- Kim's cards
+            
+            //- Kim: GPS 연결 필요
+            li.cd.tutorial.indigo.lighten-2
+                div.cd-content
+                    header <i class="medium material-icons">wb_sunny</i>
+                    p.quote 아리아,<br>오늘 날씨 어때?
+
+                    p.desc 날씨 안내를 위해 GPS를 켜고<br>누구에게 말 해 보세요
+
+                footer.cd-footer.clear.indigo
+                    i.material-icons.fl.dis error
+                    a( href="/account" ).fr.dis GPS 켜기 >
+    
+            li.cd.tutorial.indigo.lighten-2
+                div.cd-content
+                    header <i class="medium material-icons">wb_sunny</i>
+                    p.quote 아리아,<br>오늘 날씨 어때?
+
+                    p.desc NUGU를 통해 OOOO의 날씨를 알 수 있습니다.<br>위와 같이 말 해 보세요
+            
+            //- Kim: advance
+            li.cd.tutorial.indigo.lighten-2
+                div.cd-content
+                    header <i class="medium material-icons">wb_sunny</i>
+                    p.quote 아리아,<br>주말 부산 날씨 알려줘
+                    p.quotes 아리아, 내일 날씨 어때?
+                    p.quotes 아리아, 12월 3일 날씨 어때?
+            
+            //- Kim: advance+
+            li.cd.tutorial.indigo.lighten-2
+                div.cd-content
+                    header <i class="medium material-icons">wb_sunny</i>
+                    p.quote 아리아,<br>내일 포항 눈 와?
+                    p.desc 현재 위치의 날씨를 알고 싶으세요?<br>위치 정보를 업데이트 해 보세요.
+            
+            //- Kim: Commerce
+            li.cd.tutorial.red
+                div.cd-content
+                    header <i class="medium material-icons">wb_sunny</i>
+                    p.quote 아리아,<br>11번가 오늘 뭐 있어?
+                    p.quotes 아리아, 11번가 주문해줘
+                    p.quotes 아리아, 11번가 주문해줘 책 주문해줘
+                    p.desc 11번가 계정과 배송지, 결제 수단을 입력하고 11번가를 사용해 보세요
+
+                footer.cd-footer.clear.red.darken-2
+                    i.material-icons.fl.dis error
+                    a( href="/account" ).fr.dis 설정하기 >
+            
+            //- Kim: 결제완료후
+            li.cd.tutorial.red
+                div.cd-content
+                    header <i class="medium material-icons">wb_sunny</i>
+                    p.quote 아리아,<br>11번가 배송조회 해줘
+                    p.quotes 아리아, 11번가 택배 어디야?
+                    p.quotes 아리아, 11번가 추천상품 뭐있어?
+
+            //- Kim: 배송완료 후 N일 후
+            li.cd.tutorial.red
+                div.cd-content
+                    header <i class="medium material-icons">wb_sunny</i>
+                    p.quote 아리아,<br>11번가 주문 취소해줘
+                    p.quotes 아리아, 11번가 오늘 뭐있어?
+                    p.quotes 아리아, 11번가 베스트셀러가 뭐야?
+
+            //- Kim's card end
 
             li.cd.tutorial.light-blue.lighten-2
                 div.cd-content

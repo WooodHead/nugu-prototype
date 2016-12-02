@@ -17,6 +17,9 @@ body
     left: 50%
     transform: translateX(-50%) translateY( -50% )
 
+#test
+    display: none
+
 nav .brand-logo
     font-weight: 100
     font-size: 20px
@@ -67,10 +70,12 @@ nav .brand-logo
     font-size: 2em
     font-weight: bold
 
-    &:before
-        content: '"'
+.quotes
+    margin: 0
+    opacity: .9
 
-    &:after
+.quotes, .quote
+    &:before, &:after
         content: '"'
 
 .desc
@@ -83,9 +88,26 @@ nav .brand-logo
     position: relative
     overflow: hidden
     padding: 1em
+    color: white
 
     p
         margin: 0
+
+    .desc2
+        opacity: .9
+        
+
+.string-link
+    color: white
+    font-size: 1.1em
+
+    &:after
+        content: '>'
+        margin-left: 6px
+
+    &.single
+        padding: 0
+        padding-top: 1em
 
 .tr
     text-align: right
@@ -131,6 +153,194 @@ nav .brand-logo
                 height: auto
 
 
+// playback
+#playback
+    position: fixed
+    z-index: 120
+    background: white
+    opacity: .98
+    width: 100%
+    bottom: 0
+    height: 0%
+
+#cover
+    // background: url( ../images/legend.jpg ) no-repeat
+    background: url( ../images/madeon.jpg ) no-repeat
+    background-size: 100%
+    position: relative
+    width: 100%
+
+    &:before
+        content: ' '
+        display: block
+        padding-bottom: 100%
+
+#pb-header
+    position: relative
+
+#pb-track
+    position: absolute
+    width: 100%
+    height: 3px
+    opacity: 0.5
+    background: black
+    bottom: 0
+
+#pb-thumb
+    position: absolute
+    height: 3px
+    width: 33.33%
+    background: #80deea
+
+#pb-current
+    height: 8px
+    width: 1px
+    position: absolute
+    background: #4dd0e1
+    left: 33.33%
+
+    span
+        display: block
+        margin-top: 10px
+        font-weight: bold
+        font-size: 13px
+        color: black
+
+#pb-control
+    position: relative
+
+    header
+        padding-top: 4em
+        
+        h1, h2, h3
+            text-align: center
+            margin: 0
+        
+        h1
+            font-weight: 100
+            font-size: 1.5em
+            margin-bottom: 5px
+
+        h2
+            margin-bottom: 3px
+
+        h2, h3
+            font-weight: 200
+            font-size: 1.2em
+            color: #CCC
+
+#pb-collapse
+    position: absolute
+    top: 1em
+    left: 1em
+    background: white
+    width: 32px
+    height: 32px
+    border-radius: 32px
+    text-align: center
+    color: black
+
+    i
+        margin-top: 5px
+
+.playbacks
+    padding-top: 32px
+    padding-bottom: 28px
+    text-align: center
+    vertical-align: middle
+    
+    a
+        display: inline-block
+
+        &:link, &:visited
+            color: #666
+
+#pb-prev, #pb-next
+    .material-icons.medium
+        font-size: 3rem
+
+#pb-play
+    margin: 0 32px
+
+.pb-volume-track
+    left: 3%
+    position: relative
+    width: 80%
+    height: 2px
+    margin: 0 auto
+    background: #ccc
+
+#pb-volume-selector
+    position: absolute
+    top: -9px
+    width: 24px
+    height: 24px
+    border-radius: 12px
+    background: white
+    box-shadow: 0 0 5px #333
+
+#pb-vol
+    position: absolute
+    color: #c9c9c9
+    left: -30px
+    top: -9px
+
+#pb-playlist
+    position: absolute
+    top: 1em
+    left: 1em
+
+// PLayback mini
+#playback-mini
+    position: fixed
+    z-index: 100
+    height: 0;
+    bottom: -2px
+    width: 100%
+    background: rgba( 255, 255, 255, 0.95 )
+    box-shadow: 0 0 5px #ccc
+
+#pbm-cover
+    width: 50px
+    height: 50px
+    border-radius: 50%
+    position: relative
+    overflow: hidden
+    margin-top: 8px
+    margin-left: 1em
+
+    img
+        width: 100%
+        height: auto
+
+#pbm-info
+    margin-top: 16px
+    margin-left: 14px
+    width: 42%
+        
+    h1, h2
+        margin: 0
+    h1
+        font-weight: bold
+        font-size: 15px
+        margin-bottom: 3px
+    h2
+        font-weight: 400
+        font-size: 13px
+        color: #999
+
+#pbm-pb
+    margin-top: 11px
+
+    i.material-icons.medium
+        font-size: 3rem
+
+#pbm-vol
+    margin-top: 20px
+    color: #666
+    margin-left: 14px
+
+// service nav
 #apps
     position: fixed
     z-index: 150
@@ -178,3 +388,4 @@ ul.apps-list
     float: right
     &:link, &:visited
         color: white
+

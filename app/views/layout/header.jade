@@ -3,49 +3,16 @@
 ul#slide-out.side-nav
     li
         .userView
-            .background
-                img( src="/images/test.jpg" )
-            a( href="#!user" ): img( class="circle" src="/images/niffler.jpg" )
-            a( href="#!name" ): span( class="white-text name" ) Dae Kwan Song
-            a( href="#!email" ): span( class="white-text email" ) 4rhythms@gmail.com
+            a( href="#!name" ): span( class="white-text name" ) Soon Siri
+            a( href="#!email" ): span( class="white-text email" ) siri@apple.com
 
-    if navType == 'current'
-        //- as-is
-        li: a( href="#!" ) 음성명령
-        li: a( href="#!" ) 텍스트명령
-        li: a( href="#!" ) 멜론
-        li: a( href="#!" ) 스마트 홈
-        li: a( href="#!" ) 도미노피자
-        li: a( href="#!" ) BBQ 치킨
-        li: a( href="#!" ) 팟빵
-        li: a( href="#!" ) 데일리 브리핑
-
-        li: a( href="#!" ) 알람
-        li: a( href="#!" ) 일정
-        li: a( href="#!" ) 긴급알림
-        li: a( href="#!" ) 무드등
-
-        li: a( href="#!" ) 설정
-        li: div.divider
-        li: a( href="#!" ).subheader NUGU 이용안내
-        li: a( class="waves-effect" href="#!" ) 공지사항
-        li: a( class="waves-effect" href="#!" ) 이벤트
-        li: a( class="waves-effect" href="#!" ) 이용안내
-        li: a( class="waves-effect" href="#!" ) 1:1문의
-        li: a( class="waves-effect" href="#!" ) 고객센터
-        li: a( class="waves-effect" href="#!" ) 이용약관
-
-    else
-        //- 2be
-        li: a( href="#!" ) <i class="material-icons">play_circle_filled</i> 음악
-        li: a( href="#!" ) <i class="material-icons">play_circle_filled</i> 쇼핑
-        li: a( href="#!" ) <i class="material-icons">radio</i> 데일리브리핑
-        li: a( href="#!" ) <i class="material-icons">settings</i> 설정
-
-
-        //- li: div.divider
-        //- li: a( class="subheader" ) <i class="material-icons">settings</i> 설정
-        //- li: a( class="waves-effect" href="#!" ) Third Link With Waves
+    li: a( href="#!" ) NUGU 활용하기
+    li: a( href="#!" ) NUGU 스토어
+    li: a( href="#!" ) 공지사항
+    li: a( href="#!" ) 이벤트
+    li: a( href="#!" ) 디바이스 정보 및 관리
+    li: a( href="#!" ) 설정
+    li: a( href="#!" ) 고객센터
 
 header#global-nav
     nav
@@ -58,6 +25,8 @@ header#global-nav
             ul#nav-mobile2.right
                 li: a( href="#!" )#open-apps: i.material-icons apps
 
+
+//- Service Nav
 #apps
     .clear
         a( href="#!" )#close-apps: i.material-icons.small clear
@@ -86,4 +55,55 @@ header#global-nav
             div.circle-item.orange.lighten-1
                 i.material-icons accessibility
             span 유용한기능
-        
+
+//- Playbacks
+#playback
+    .clear
+        header#pb-header
+            #cover
+            a( href="#!" )#pb-collapse: i.material-icons keyboard_arrow_down
+
+            #pb-track
+                #pb-thumb
+                #pb-current
+                    span 1:20
+
+        #pb-control
+            header
+                h1 Pay No Mind(feat. Passion Pit)
+                h2 Madeon
+                h3 Adventure(Deluxe)
+                //- h1 네박자(feat. Alessia Cara)
+                //- h2 송대관
+                //- h3 노래와人生
+            
+            //- playbacks!
+            .playback-container
+                .playbacks.clear
+                    //- a( href="#!" )#pb-playlist: i.material-icons list
+                    a( href="#!" )#pb-prev: i.material-icons.medium skip_previous
+                    a( href="#!" )#pb-play: i.material-icons.medium pause_circle_filled
+                    a( href="#!" )#pb-next: i.material-icons.medium skip_next
+
+            .pb-volume-track
+                #pb-vol: i.material-icons volume_mute
+                #pb-volume-thumb
+                #pb-volume-selector
+
+            #pb-playlist: i.material-icons list
+
+//- pb mini
+#playback-mini.clear
+    #pbm-cover.fl
+        img( src="/images/legend.jpg" )
+    
+    #pbm-info.fl
+        h1 네박자 네박자
+        h2 송대관 - Greatest Song
+    
+    #pbm-pb.fl
+        a(href="#!")#pbm-play: i.material-icons.medium pause_circle_filled
+        a( href="#!" )#pbm-next: i.material-icons.medium fast_forward
+    
+    #pbm-vol.fl
+        i.material-icons volume_up
