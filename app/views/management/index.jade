@@ -1,0 +1,24 @@
+extends ../layout/management
+
+block content
+    main#main
+        h1 Services
+
+        form().row
+            input( type="hidden" name="_csrf" value=csrf )
+            //- input( type="hidden" name="_method" value="" )
+
+            //- title
+            div.input-field.col.s12
+                input( placeholder="Service Title" id="title" type="text" )
+                label( for="title" ) Title
+
+            div.input-field.col.s12
+                input( placeholder="Color" id="color" type="text" )
+                label( for="color" ) Color
+
+            div.input-field.col.s12
+                textarea#description.materialize-textarea
+                label( for="description" ) Description
+
+            button create
