@@ -8,8 +8,8 @@ html
         link( href="/stylesheets/material-icons.css" rel="stylesheet" )
         link( href="/stylesheets/materialize.css" type="text/css" rel="stylesheet" )
         link( href="/stylesheets/prototype.css" type="text/css" rel="stylesheet" )
-    body
-        include layout/header
+    body( class=( grayscale ? 'grayscale' : '' ) )
+        include header
 
         block content
         
@@ -21,4 +21,8 @@ html
         script( src="/bower_components/gsap/src/minified/plugins/CSSPlugin.min.js" )
         script( src="/bower_components/jquery/dist/jquery.min.js" )
         script( src="/bower_components/materialize/dist/js/materialize.min.js" )
-        script( src="/javascripts/prototype.js" )
+        script( src="/javascripts/prototype.js" )    
+
+        - if ( title == 'Masonry' )
+            script( src="/bower_components/masonry/masonry.pkgd.min.js" )
+            script( src="/javascripts/masonry.js" )

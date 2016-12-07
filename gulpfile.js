@@ -22,6 +22,7 @@ gulp.task('nodemon', ()=> {
 gulp.task('watch', ()=> {
     // watch:sass
     gulp.watch('./src/sass/*.sass', ['sass']);
+
 });
 
 // sass
@@ -32,3 +33,4 @@ gulp.task('sass', ()=> {
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./app/assets/stylesheets/'));
 });
+

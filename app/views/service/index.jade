@@ -1,0 +1,44 @@
+extends ../layout/management
+
+block content
+    main#main
+        h1 Services
+        
+        ul.list
+            each service in services
+                li.cd.tutorial
+                    div( class=( service.color ? service.color : 'black' ) ).card-wrap.lighten-2
+                        div.cd-content
+                            header: i.medium.material-icons= service.icon ? service.icon : 'remove_circle'
+                            p.quote= service.title
+                            p.desc= service.description
+
+                        footer( class=service.color ).cd-footer.clear
+                            i.material-icons.fl.dis style
+                            span= service.childs.length
+                            a( href="#!" ).fr.dis: i.material-icons keyboard_arrow_down
+                            a( href="/service/delete/#{service.id}" ).dis: i.material-icons remove_circle
+
+
+        form( method="post" enctype="application/x-www-form-urlencoded" ).row
+            input( type="hidden" name="_csrf" value=csrf )
+            //- input( type="hidden" name="_method" value="" )
+
+            //- title
+            div.input-field.col.s12
+                input( type="text" name="title" )#title.validate
+                label( for="title" ) Title
+
+            div.input-field.col.s12
+                input( type="text" name="color" )#color
+                label( for="color" ) Color
+
+            div.input-field.col.s12
+                input( type="text" name="icon" )#icon
+                label( for="icon" ) Icon
+
+            div.input-field.col.s12
+                textarea( name="description" )#description.materialize-textarea
+                label( for="description" ) Description
+
+            button.btn create
