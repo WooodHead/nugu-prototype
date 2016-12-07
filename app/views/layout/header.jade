@@ -1,18 +1,17 @@
 - var navType = 'current'
 //- SNB
 ul#slide-out.side-nav
-    li
-        .userView
-            a( href="#!name" ): span( class="white-text name" ) Soon Siri
-            a( href="#!email" ): span( class="white-text email" ) siri@apple.com
-
-    li: a( href="#!" ) NUGU 활용하기
-    li: a( href="#!" ) NUGU 스토어
-    li: a( href="#!" ) 공지사항
-    li: a( href="#!" ) 이벤트
-    li: a( href="#!" ) 디바이스 정보 및 관리
-    li: a( href="#!" ) 설정
-    li: a( href="#!" ) 고객센터
+    li.userInfo
+        a( href="#!name" ): span( class="name" ) Soon Siri
+        a( href="#!email" ): span( class="email" ) siri@apple.com
+    
+    li: a( href="#!" ) <i class="material-icons">lightbulb_outline</i> NUGU 활용하기
+    li: a( href="/store/" ) <i class="material-icons">shop</i> NUGU 스토어
+    li: a( href="#!" ) <i class="material-icons">announcement</i> 공지사항
+    li: a( href="#!" ) <i class="material-icons">insert_emoticon</i> 이벤트
+    li: a( href="#!" ) <i class="material-icons">perm_device_information</i> 디바이스 정보 및 관리
+    li: a( href="#!" ) <i class="material-icons">settings</i> 설정
+    li: a( href="#!" ) <i class="material-icons">help_outline</i> 고객센터
 
 header#global-nav
     nav
@@ -20,11 +19,16 @@ header#global-nav
             a( href="#" class="brand-logo center")#logo= title
             
             ul#nav-mobile.left
-                li: a( href="#" data-activates="slide-out" class="snb" ): i.material-icons menu
-
+                - if ( !root )
+                    li: a( href="javascript:history.back()" class="back" ): i.material-icons keyboard_arrow_left
+                - else
+                    li: a( href="#" data-activates="slide-out" class="snb" ): i.material-icons menu
+            
             ul#nav-mobile2.right
-                li: a( href="#!" )#open-apps: i.material-icons apps
-
+                - if ( title == "STORE" )
+                    li: a( href="#!" )#open-search: i.material-icons search
+                - else
+                    li: a( href="#!" )#open-apps: i.material-icons apps
 
 //- Service Nav
 #apps
@@ -44,17 +48,21 @@ header#global-nav
                 i.material-icons video_library
             span 미디어
         li.app-item
-            div.circle-item.pink.lighten-1
+            div.circle-item.yellow
                 i.material-icons motorcycle
             span 주문/배달
         li.app-item
-            div.circle-item.indigo.lighten-2
+            div.circle-item.indigo.darken-2
                 i.material-icons assignment_ind
             span 개인비서
         li.app-item
             div.circle-item.orange.lighten-1
                 i.material-icons accessibility
             span 유용한기능
+        li.app-item
+            div.circle-item.pink.lighten-1
+                i.material-icons tv
+            span BTV??
 
 //- Playbacks
 #playback
@@ -70,12 +78,12 @@ header#global-nav
 
         #pb-control
             header
-                h1 Pay No Mind(feat. Passion Pit)
-                h2 Madeon
-                h3 Adventure(Deluxe)
-                //- h1 네박자(feat. Alessia Cara)
-                //- h2 송대관
-                //- h3 노래와人生
+                //- h1 Pay No Mind(feat. Passion Pit)
+                //- h2 Madeon
+                //- h3 Adventure(Deluxe)
+                h1 네박자(feat. Alessia Cara)
+                h2 송대관
+                h3 노래와人生
             
             //- playbacks!
             .playback-container
