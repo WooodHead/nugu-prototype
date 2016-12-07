@@ -1,7 +1,5 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const co = require('co');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -11,33 +9,11 @@ router.get('/', (req, res) => {
     });
 });
 
-// router.get( '/account', (req, res) => {
-//     res.render( 'account', {
-//         title: 'Account',
-//         root: false
-//     });
-// });
-
-router.get( '/store', (req, res) => {
-    res.render( 'store', {
-        title: 'STORE',
-        root: false,
-    });
-});
-
-router.get( '/masonry', ( req, res )=>{
-    res.render( 'masonry', {
-        title: 'Masonry',
-        root: true
-    });
-});
-
-// management
-router.get( '/management', ( req, res )=> {
-    res.render( 'management/index', {
-        title: 'Management',
-        csrf: req.csrfToken(),
-        root: true
+router.get( '/account', (req, res) => {
+    console.log( 'dd?' );
+    res.render( 'account', {
+        title: '으앙 계정연결',
+        root: false
     });
 });
 

@@ -1,12 +1,9 @@
 "use strict";
 
 const index = require('../app/controllers/index');
-const service = require('../app/controllers/service');
 
 module.exports = (app) => {
     app.use(index);
-
-    app.use( '/service', service );
 
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {
