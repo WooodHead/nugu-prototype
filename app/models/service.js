@@ -7,7 +7,7 @@ const serviceSchema = new Schema({
     description: String,
     childs: [{ type: Schema.Types.ObjectId, ref: 'Card' }],
     color: String,
-    icon: String
+    icon: String,
+    status: String
 });
-
 mongoose.model( 'Service', serviceSchema );

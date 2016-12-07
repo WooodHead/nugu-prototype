@@ -1,0 +1,110 @@
+extends ../layout/management
+
+block content
+    main#main
+        h1= title
+                
+        ul.list
+            each card in cards
+                li= card
+            //- 
+                li.cd.tutorial
+                    div( class=service.color ).card-wrap.lighten-2
+                        div.cd-content
+                            header: i.medium.material-icons= card.icon
+                            p.quote= card.title
+                            p.desc= card.description
+
+                        footer( class=service.color ).cd-footer.clear
+                            i.material-icons.fl.dis style
+                            a( href="#!" ).fr.dis: i.material-icons keyboard_arrow_down
+        
+        //-
+            type: String,
+            title: String,
+            service: { type: Schema.Types.ObjectId, ref: 'Service' },
+            is_show: { type: Boolean, default: true },
+            vcommand: String,
+            description: String,
+            quotes: Array,
+            descOrder: { type: Boolean, default: true },
+            actions: Array,
+            icon: String,
+            color: String,
+            status: String,
+            note: String
+
+        form( method="post" )#card-form.row
+            input( type="hidden" name="_csrf" value=csrf )
+            //- input( type="hidden" name="_method" value="" )
+            
+            div.input-field.col.s12
+                select( name="service" )#service
+                    option( value="" disabled selected ) Service 선택
+                        each service in services
+                            option( value=service.id )= service.title
+                    
+                label Service
+            
+            div.input-field.col.s12
+                select( name="types" )#types
+                    option( value="" disabled selected ) Type 선택
+                        option( value="study" ) 학습:Study, Service
+                        option( value="event" ) 이벤트:Event, Notice
+                        option( value="status" ) 상태:Status, History
+                    
+                label type
+
+            //- title
+            div.input-field.col.s12
+                input( type="text" name="title" )#title.validate
+                label( for="title" ) Title
+
+            div.input-field.col.s12
+                input( type="text" name="color" )#color
+                label( for="color" ) Color
+
+            div.input-field.col.s12
+                input( type="text" name="icon" )#icon
+                label( for="icon" ) Icon
+            
+            div.input-field.col.s12
+                input( type="text" name="vcommand" )#vcommand.validate
+                label( for="vcommand" ) 발화문( 메인 )
+
+            div.input-field.col.s12
+                .chips.chips-placeholder
+            
+            div.input-field.col.s12
+                textarea( name="description" )#description.materialize-textarea
+                label( for="description" ) Description
+            
+
+            div.input-field.col.s12
+                label 문구 순서
+                <br>
+                p
+                    input( name="descOrder" type="radio" id="do-true" )
+                    label( for="do-true" ) 발화문 > 설명 순
+                p
+                    input( name="descOrder" type="radio" id="do-false" )
+                    label( for="do-false" ) 설명 > 발화문 순
+
+            div.input-field.col.s12
+                textarea( name="description" )#description.materialize-textarea
+                label( for="description" ) Description
+            
+            div.input-field.col.s12
+                textarea( name="note" )#note.materialize-textarea
+                label( for="note" ) 서비스 별 이슈 및 노트
+
+            div.input-field.col.s12
+                div.switch
+                    label.
+                        hide
+                        <input type="checkbox" name="is_show" checked>
+                        <span class="lever"></span>
+                        show
+
+
+            button.btn create

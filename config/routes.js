@@ -2,11 +2,18 @@
 
 const index = require('../app/controllers/index');
 const service = require('../app/controllers/service');
+const card = require('../app/controllers/card');
 
 module.exports = (app) => {
+
+    // index routes
     app.use(index);
 
+    // service routes
     app.use( '/service', service );
+
+    // card routes
+    app.use( '/card', card );
 
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {

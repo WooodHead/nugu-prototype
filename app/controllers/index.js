@@ -6,8 +6,16 @@ const router = express.Router();
 /* GET home page. */
 router.get('/', (req, res) => {
     res.render( 'index', {
-        title: 'NUGU',
-        root: true
+        title: 'MELON',
+        root: false
+    });
+});
+
+// test melon
+router.get('/melon', (req, res) => {
+    res.render( 'melon', {
+        title: 'MELON',
+        root: false
     });
 });
 
@@ -18,17 +26,26 @@ router.get('/', (req, res) => {
 //     });
 // });
 
-router.get( '/store', (req, res) => {
+router.get( '/store', (req, res)=> {
     res.render( 'store', {
         title: 'STORE',
         root: false,
     });
 });
 
-router.get( '/masonry', ( req, res )=>{
+router.get( '/masonry', ( req, res )=> {
     res.render( 'masonry', {
         title: 'Masonry',
         root: true
+    });
+});
+
+// grayscale
+router.get( '/grayscale', ( req, res )=> {
+    res.render( 'grayscale', {
+        title: 'NUGU',
+        root: true,
+        grayscale: true
     });
 });
 

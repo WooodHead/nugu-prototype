@@ -38,18 +38,74 @@ const pb_open = function() {
 pb_collapse.addEventListener( 'click', pb_close );
 
 // service nav
-const apps = $( '#apps' );
+const appss = $( '#apps' );
 const navTL = new TimelineMax();
+const childTL = new TimelineMax({ onComplete: ctlCallback });
 const items = document.querySelectorAll( '.app-item' );
+const testItem = document.querySelector( '#test2' );
+const childList = document.querySelector( '#test-childs' );
+const childItems = document.querySelectorAll( '.child-item' );
+let child_status = false;
 
 // TL:modal
-navTL.add( TweenMax.to( apps, 0.3, { height: '100%', ease: Strong.easeOut }), 'modal' );
+navTL.add( TweenMax.to( appss, 0.3, { height: '100%', ease: Strong.easeOut }), 'modal' );
 // TL:icons
 navTL.add( 'icons' );
 // each icons tween
 items.forEach( ( item, i ) => navTL.add( TweenMax.from( item, 0.33, { x: "-=20", y: "+=20" , opacity: 0 }), `modal+=${0.1 * i}` ) );
 // stop and ready
 navTL.stop();
+
+childTL.add( TweenMax.from( childList, 0.3, { height: 0, ease: Strong.easeOut }) );
+childTL.add( 'childs' );
+childItems.forEach( ( child, i ) => {
+    childTL.add( TweenMax.from( child, 0.3, { x: "+=20", y: "-=20", opacity: 0 } ), `childs+=${0.1 * i}` );
+})
+childTL.stop();
+// test item events
+testItem.addEventListener( 'click', event => {
+    blurItems( event.currentTarget );
+});
+
+function ctlCallback() {
+    appss.on( 'click', function( event ){
+        unblurItems();
+    });
+}
+
+function blurItems( current ) {
+    // focus & blur
+    items.forEach( item =>  {
+        if ( item !== current ) {
+            item.classList.add( 'ai-blur' )
+            TweenMax.set( item, {opacity: '0.3'} );
+        } else {
+            item.classList.add( 'ai-focus' )
+        }
+    });
+
+    // then
+    childTL.play();
+}
+
+childTL.eventCallback( 'onReverseComplete', function() {
+    items.forEach( item => {
+        if( item == testItem ) {
+            item.classList.remove( 'ai-focus' );
+        } else {
+            item.classList.remove( 'ai-blur' );
+            TweenMax.set( item, { opacity: '1' } );
+        }
+    });
+})
+
+function unblurItems() {
+    child_status = false;
+    childTL.reverse();
+    appss.off( 'click' );
+}
+
+
 
 // open service nav
 $( '#open-apps' ).click( event => navTL.play() );
@@ -66,6 +122,11 @@ let recog_status = false;
 const vr_domino = new SpeechSynthesisUtterance();
 vr_domino.text = "피자 주문이 완료되었습니다";
 vr_domino.lang = 'ko-KR';
+
+
+
+
+
 
 
 
@@ -135,8 +196,6 @@ recognition.onspeechend = function() {
 }
 recognition.onnomatch = function() { console.log( 'failed' ) }
 recognition.onerror = ( event ) => { console.log( event.error ) }
-
-
 
 
 

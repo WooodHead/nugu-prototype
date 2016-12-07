@@ -2,11 +2,12 @@
 //- SNB
 ul#slide-out.side-nav
     li.userInfo
-        a( href="#!name" ): span( class="name" ) Soon Siri
-        a( href="#!email" ): span( class="email" ) siri@apple.com
+        a( href="#!name" ): span( class="name" ) 송누구
+        a( href="#!email" ): span( class="email" ) nugusong@nugu.co.kr
     
     li: a( href="#!" ) <i class="material-icons">lightbulb_outline</i> NUGU 활용하기
     li: a( href="/store/" ) <i class="material-icons">shop</i> NUGU 스토어
+    li: a( href="/store/" ) <i class="material-icons">receipt</i> 주문내역
     li: a( href="#!" ) <i class="material-icons">announcement</i> 공지사항
     li: a( href="#!" ) <i class="material-icons">insert_emoticon</i> 이벤트
     li: a( href="#!" ) <i class="material-icons">perm_device_information</i> 디바이스 정보 및 관리
@@ -36,33 +37,53 @@ header#global-nav
         a( href="#!" )#close-apps: i.material-icons.small clear
     ul.apps-list
         li.app-item
-            div.circle-item.light-blue.lighten-2
+            div( class=( grayscale ? 'grey' : 'light-blue lighten-2'  ) ).circle-item.waves-effect.waves-light
                 i.material-icons.medium.vertical-align music_note
             span 뮤직
         li.app-item
-            div.circle-item.blue.lighten-1
+            div( class=( grayscale ? 'grey' : 'blue lighten-1'  ) ).circle-item.waves-effect.waves-light
                 i.material-icons settings_remote
             span 스마트홈
-        li.app-item
-            div.circle-item.red.lighten-1
+        li.app-item#test2
+            div( class=( grayscale ? 'grey' : 'red lighten-1'  ) ).circle-item.waves-effect.waves-light
                 i.material-icons video_library
             span 미디어
+
+        ul#test-childs.childs
+            li.child-item
+                div( class=( grayscale ? 'grey' : 'red darken-1'  ) ).circle-item.waves-effect.waves-light
+                    i.material-icons hearing
+                span 팟빵
+            li.child-item
+                div( class=( grayscale ? 'grey' : 'red darken-1'  ) ).circle-item.waves-effect.waves-light
+                    i.material-icons radio
+                span 라디오
+            li.child-item
+                div( class=( grayscale ? 'grey' : 'red darken-1'  ) ).circle-item.waves-effect.waves-light
+                    i.material-icons schedule
+                span 데일리브리핑
+
+
         li.app-item
-            div.circle-item.yellow
+            div( class=( grayscale ? 'grey' : 'yellow'  ) ).circle-item.waves-effect.waves-light
                 i.material-icons motorcycle
             span 주문/배달
         li.app-item
-            div.circle-item.indigo.darken-2
+            div( class=( grayscale ? 'grey' : 'indigo darken-2'  ) ).circle-item.waves-effect.waves-light
                 i.material-icons assignment_ind
             span 개인비서
         li.app-item
-            div.circle-item.orange.lighten-1
+            div( class=( grayscale ? 'grey' : 'orange lighten-1'  ) ).circle-item.waves-effect.waves-light
                 i.material-icons accessibility
             span 유용한기능
         li.app-item
-            div.circle-item.pink.lighten-1
-                i.material-icons tv
-            span BTV??
+            div( class=( grayscale ? 'grey' : 'pink lighten-1'  ) ).circle-item.waves-effect.waves-light
+                i.material-icons traffic
+            span 교통
+        li.app-item
+            div( class=( grayscale ? 'grey' : 'pink lighten-1'  ) ).circle-item.waves-effect.waves-light
+                i.material-icons videogame_asset
+            span 오락
 
 //- Playbacks
 #playback

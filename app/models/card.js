@@ -4,6 +4,7 @@ const Schema   = mongoose.Schema;
 
 const cardSchema = new Schema({
     type: String,
+    title: String,
     service: { type: Schema.Types.ObjectId, ref: 'Service' },
     is_show: { type: Boolean, default: true },
     vcommand: String,
@@ -12,7 +13,9 @@ const cardSchema = new Schema({
     descOrder: { type: Boolean, default: true },
     actions: Array,
     icon: String,
-    color: String
+    color: String,
+    status: String,
+    note: String
 });
 
 mongoose.model( 'Card', cardSchema );
