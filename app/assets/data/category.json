@@ -1,0 +1,40 @@
+{
+    "category": {
+        "music": {
+            "label": "뮤직",
+            "icon": "",
+            "color": "",
+            "childs": "melon"
+        },
+        "smarthome": {
+            "label": "스마트홈",
+            "icon": "",
+            "color": "",
+            "childs": ""
+        },
+        "media": {
+            "label": "미디어",
+            "icon": "",
+            "color": "",
+            "childs": "podcast, dailybriefing"
+        },
+        "delivery": {
+            "label": "주문/배달",
+            "icon": "",
+            "color": "",
+            "childs": "domino, bbq"
+        },
+        "assistant": {
+            "label": "개인비서",
+            "icon": "",
+            "color": "",
+            "childs": "calendar, alarm, weather, date"
+        },
+        "tool": {
+            "label": "유용한기능",
+            "icon": "",
+            "color": "",
+            "childs": "mood, timer, sleeptimer, phonefinder, alert"
+        }
+    }
+}
