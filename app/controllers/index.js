@@ -19,6 +19,14 @@ router.get('/melon', (req, res) => {
     });
 });
 
+// event tests
+router.get( '/event', ( req, res ) => {
+    res.render( 'event', {
+        title: 'NUGU',
+        root: true
+    })
+});
+
 // router.get( '/account', (req, res) => {
 //     res.render( 'account', {
 //         title: 'Account',

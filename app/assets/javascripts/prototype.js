@@ -1,30 +1,5 @@
 'use strict';
 
-// shuffle array
-Array.prototype.shuffle = function(self) {
-  var duplicate, i, len, mem, result;
-  if (self == null) {
-    self = false;
-  }
-  if (self) {
-    mem = this;
-    len = mem.length;
-    while (len) {
-      i = Math.floor(Math.random() * len--);
-      this.push(mem.splice(i, 1)[0]);
-    }
-  } else {
-    result = [];
-    duplicate = this.slice(0);
-    len = duplicate.length;
-    while (len) {
-      i = Math.floor(Math.random() * len--);
-      result.push(duplicate.splice(i, 1)[0]);
-    }
-    return result;
-  }
-};
-
 // Materialize prototype
 $( '.snb' ).sideNav();
 $( '#apps' ).modal({
@@ -130,10 +105,16 @@ function unblurItems() {
     appss.off( 'click' );
 }
 
+
+/*========================================
+=            Card And Service            =
+========================================*/
+
+
 let service_collection  = [];
 let cards_collection    = [];
 let advanced_collection = [];
-let basic_collection    = [];
+let basic_collection    = []; 
 
 const container = document.querySelector( '#cards' );
 const msnry = new Masonry( container, {
@@ -142,7 +123,7 @@ const msnry = new Masonry( container, {
     percentWidth: true
 });
 
-const cards = document.getElementById( 'cards' );
+const cardsList = document.getElementById( 'cards' );
 
 class Card {
     constructor( command, prop, is_basic ) {
@@ -254,7 +235,7 @@ function renderRandom() {
 
     cards_collection.shuffle(true);
     cards_collection.forEach( card => {
-        cards.appendChild( card.elem );
+        cardsList.appendChild( card.elem );
         msnry.appended( card.elem );
     });
 
@@ -270,12 +251,12 @@ function renderBasicAndRandom() {
     advanced_collection.shuffle( true );
 
     basic_collection.forEach( card => {
-        cards.appendChild( card.elem );
+        cardsList.appendChild( card.elem );
         msnry.appended( card.elem );
     });
 
     advanced_collection.forEach( card => {
-        cards.appendChild( card.elem );
+        cardsList.appendChild( card.elem );
         msnry.appended( card.elem );
     });
 
@@ -306,70 +287,14 @@ $.getJSON( 'data/service.json' ).done( data => {
     for( let k in data.service ) {
         new Service( data.service[k] );
     }
-
-    renderRandom()
 });
+
+msnry.layout();
 
 // open service nav
 $( '#open-apps' ).click( event => navTL.play() );
 // close service nav
 $( '#close-apps' ).click( event=> navTL.reverse() );
-
-// Voice
-const wakeup = new webkitSpeechRecognition();
-
-
-
-const recognition = new webkitSpeechRecognition();
-const grammars = new webkitSpeechGrammarList();
-const grammar = '#JSGF V1.0; grammar funcs; public <funcs> = 도미노|피자;';
-// test start button
-const startButton = document.querySelector( '#logo' );
-let recog_status = false;
-const vr_domino = new SpeechSynthesisUtterance();
-vr_domino.text = "피자 주문이 완료되었습니다";
-vr_domino.lang = 'ko-KR';
-
-
-// wakeup
-wakeup.lang = 'ko-KR';
-wakeup.interimResults = false;
-wakeup.maxAlternatives = 1;
-
-wakeup.onresult = ( event ) => {
-    const last = event.results.length - 1;
-    const value = event.results[last][0].transcript;
-
-    if ( value == '아리아' || value == '자리야' || value == '자리아' ) return readySpeech();
-};
-
-// recognition settings
-recognition.lang = 'ko-KR';
-recognition.interimResults = false;
-recognition.maxAlternatives = 1;
-grammars.addFromString( grammar, 1 );
-recognition.grammars = grammars;
-
-function readySpeech() {
-    wakeup.stop();
-
-    console.log( 'ㅇㅇ?' );
-    document.getElementById('logo').style.color = 'red';
-    recog_status = true;
-    recognition.start();
-
-    $( '#logo' ).on( 'click', ( event ) => {
-        endSpeech();
-    });
-}
-
-function endSpeech() {
-    recog_status = false;
-    document.getElementById('logo').style.color = 'black';
-    recognition.stop();
-    wakeup.start();
-    $( '#logo' ).off( 'click' );
-}
 
 
 function setMini(){
@@ -382,49 +307,57 @@ function removeMini() {
     msnry.layout();   
 }
 
-const quoteBox = document.querySelector( '#quoteEx' );
+msnry.layout();
 
-const speechFuncs = ( value )=> {
-    // if ( value == '도미노 피자 시켜 줘' || value == '안녕하세요' ) {
-    //     speechSynthesis.speak(vr_domino);
-    //     $( '#domino' ).slideDown( 333 );
-    // }
+function testStatus( qs ) {
+    const $obj = $( qs );
+    const $wrap = $obj.find( '.card-wrap' );
 
-    // if ( value == '오늘의 픽 보여 줘' )
-    //     navTL.play();
+    TweenMax.set( $obj, { height: '140px' } );
+    msnry.layout();
+    TweenMax.to( $wrap, 0.33, { right: 0, ease: Strong.easeOut, delay: .3 } );
 
-    // if ( value == '그만' )
-    //     navTL.reverse();
+    const $close = $obj.find( '.material-icons' );
 
-    // if ( value == '아리아 인기 음악 틀어 줘' ) {
-    //     // $( '#test' ).slideDown( 333 );
-    //     $(quoteBox.children[0]).hide( 300 ).html( '아리아<br>김광석의 사랑했지만<br>들려줘' ).show( 333 );
-    //     $(quoteBox.children[1]).text( '아리아, 이노래 뭐야?' );
-    //     $(quoteBox.children[2]).text( '아리아, 최신 노래 들려줘' );
-    // }
+    $close.click( function() {
+        closeStatus( qs );
+    });
+}
 
-    // if ( value == '노래 틀어줘' )
-    //     pb_open();
+function closeStatus( qs ) {
+    const $obj = $( qs );
+    const $wrap = $obj.find( '.card-wrap' );
+    const $close = $obj.find( '.material-icons' );
+    TweenMax.to( $wrap, 0.33, { right: '-315px', ease: Strong.easeIn, onComplete: function() {
+        TweenMax.set( $obj, {height: 0 });
+        msnry.layout();
+    }} );
+};
 
-    // if ( value == '노래 그만' )
-    //     pbm_close();
+let once = false;
+window.addEventListener( 'mousewheel', event => {
+    if ( window.scrollY == 0 && event.wheelDelta > 150 ) {
+        testshoot();
+    }
+});
+
+function testshoot(){
+    const hsc = $( '#hidden-status-container' );
+    hsc.addClass( 'shooted' );
+    $( '#main-2' ).css( 'padding-top', '795px' );
+    TweenMax.to( hsc, { height: '700', ease: Strong.easeOut });
 }
 
 
-// speech result
-recognition.onresult = ( event ) => {
-    const last = event.results.length - 1;
-    const value = event.results[last][0].transcript;
 
-    cards_collection.forEach( card => card.checkQuotes( value ) );
-};
+// testStatus( '#status-domino' );
+// testStatus( '#status-taxi' );
 
 
-// speech end
-// wakeup.start();
-recognition.onspeechend = function() { endSpeech() };
-recognition.onnomatch = function() { console.log( 'failed' ) };
-recognition.onerror = ( event ) => { console.log( event.error ) };
+
+
+
+
 
 
 

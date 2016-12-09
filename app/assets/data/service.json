@@ -146,7 +146,7 @@
         },
         "domino": {
             "label": "도미노피자",
-            "icon": "motorcycle",
+            "icon": "local_pizza",
             "color": "red",
             "basic": [
                 "아리아, 도미노 피자 주문해줘",
