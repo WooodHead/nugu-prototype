@@ -6,8 +6,8 @@ const router = express.Router();
 /* GET home page. */
 router.get('/', (req, res) => {
     res.render( 'index', {
-        title: 'MELON',
-        root: false
+        title: 'NUGU',
+        root: true
     });
 });
 
@@ -17,6 +17,14 @@ router.get('/melon', (req, res) => {
         title: 'MELON',
         root: false
     });
+});
+
+// event tests
+router.get( '/event', ( req, res ) => {
+    res.render( 'event', {
+        title: 'NUGU',
+        root: true
+    })
 });
 
 // router.get( '/account', (req, res) => {
