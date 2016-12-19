@@ -2,11 +2,11 @@ extends ../layout/management
 
 block content
     main#main
-        h1 Services
+        h1 Category
         
         ul.list
-            each service in services
-                li= service
+            each category in categories
+                li= category
             //- each service in services
             //-     li.cd.tutorial
             //-         div( class=( service.color ? service.color : 'black' ) ).card-wrap.lighten-2

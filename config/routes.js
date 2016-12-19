@@ -1,19 +1,31 @@
 "use strict";
 
-const index = require('../app/controllers/index');
-const service = require('../app/controllers/service');
-const card = require('../app/controllers/card');
+const index      = require('../app/controllers/index');
+const service    = require('../app/controllers/service');
+const card       = require('../app/controllers/card');
+const category   = require('../app/controllers/category');
+const management = require('../app/controllers/management');
+const ptype      = require( '../app/controllers/ptype' );
 
 module.exports = (app) => {
 
     // index routes
     app.use(index);
 
+    // management
+    app.use( '/management', management );
+
     // service routes
     app.use( '/service', service );
 
+    // category routes
+    app.use( '/category', category );
+
     // card routes
     app.use( '/card', card );
+
+    // ptype
+    app.use( '/ptype', ptype );
 
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {

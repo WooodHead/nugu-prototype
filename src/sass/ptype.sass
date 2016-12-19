@@ -747,7 +747,142 @@ ul.apps-list
             &:first-child
                 margin-bottom: 9px
 
-// .is_on
-//     .card-wrap
-//         transform: translateX( 75px )
-//         transition: transform .3s ease-out
+// ptypes
+.collapsible ul
+    background-color: #FAFAFA
+
+// ptype snb icon init
+.side-nav li > a > i.material-icons.fr
+    float: right
+    margin: 0
+
+// app list
+.apps-list
+    &.no-item
+        position: relative
+        width: 100%
+        height: 100%
+
+// app list has no item
+.app-item-one
+    position: absolute
+    font-size: 1.5rem
+    color: white
+    text-align: center
+    top: 50%
+    left: 50%
+    width: 100%
+    transform: translate( -50%, -75% )
+    p
+        margin-bottom: 55px
+
+// app list has no item link
+.app-item-one-link
+    padding: .5em 1.5em
+    border-radius: 25px
+    border: 1px solid white
+    
+    &:link, &:visited
+        color: white
+
+    i.material-icons
+        transform: translateY(4px)
+
+// header tabs
+.header-tabs
+    position: fixed
+    z-index: 50
+    top: 56px
+    width: 100%
+
+// main has tabs
+.has-tabs
+    padding-top: 48px
+
+// tabs background and box shadow
+.darkone
+    background-color: #3d3d3d
+    
+    &.col
+        box-shadow: 0 0 3px black
+
+// store each tab pages
+#category, #my-app
+    display: none
+
+// store list
+.store-list
+    margin: 0
+    padding: 0
+
+.sli
+    @extend .clear
+    border-bottom: 1px solid #EDEDED
+
+    h1, h2, h3
+        margin: 0
+    
+    h1
+        font-size: 1.4rem
+        margin-bottom: 3px
+
+    h2
+        font-size: 1rem
+        color: #CCC
+
+    h3
+        font-size: 1.4rem
+
+.sli
+    img, header, h3, .sli-circle
+        float: left
+    
+    header
+        padding-top: 19px
+        padding-left: 9px
+
+    .stars, .d0
+        float: right
+
+    h3, .d0
+        margin-top: 15px
+    
+    h3
+        margin-left: 19px
+
+
+.sli-circle
+    width: 50px
+    height: 50px
+    text-align: center
+    line-height: 50px
+    border-radius: 50%
+    background: #dedede
+    color: white
+
+.sli0
+    img
+        width: 80px
+        height: 80px
+
+.sl-link
+    display: block
+
+    &:link, &:visited
+        color: black
+
+.sli1
+    padding: 7px 1em
+    line-height: 64px
+
+.stars
+    padding-top: 29px
+    padding-right: 9px
+    @extend .clear
+
+    li
+        display: inline-block
+
+    .material-icons
+        font-size: 1rem
+        margin: 0

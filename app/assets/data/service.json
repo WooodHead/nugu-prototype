@@ -4,6 +4,7 @@
             "label": "멜론",
             "icon": "library_music",
             "color": "blue",
+            "url": "/melon",
             "basic": [
                 "아리아, 음악 들려줘",
                 "아리아, 최신음악 틀어줘",
@@ -147,6 +148,7 @@
         "domino": {
             "label": "도미노피자",
             "icon": "local_pizza",
+            "url": "/domino",
             "color": "red",
             "basic": [
                 "아리아, 도미노 피자 주문해줘",
@@ -170,6 +172,7 @@
             "label": "BBQ",
             "icon": "motorcycle",
             "color": "red",
+            "url": "/domino",
             "basic": [
                 "아리아, BBQ 주문해줘",
                 "아리아, BBQ 시켜줘"
@@ -396,6 +399,127 @@
                 "아리아, 긴급 알림 발송",
                 "아리아, 긴급 알림 보내줘"
             ]
-        }
+        },
+        "fit": {
+            "label": "7분 운동하기",
+            "icon": "fitness_center",
+            "color": "blue",
+            "basic": [
+                "아리아, 7분 운동 시작해줘",
+                "아리아, 10분 운동 시작해줘",
+                "아리아, 10분 등 운동 시작해줘"
+            ]
+        },
+        "events": [
+            {
+                "label": "앱스토어!",
+                "url": "",
+                "img": "/images/sample/market.png"
+            },
+            {
+                "label": "매일 따끈따끈한 소식이 나에게 온다! 데일리 브리핑",
+                "url": "",
+                "img": "/images/sample/banner0.png"
+            },
+            {
+                "label": "심심하고 지루할땐? NUGU로 팟캐스트 듣자!",
+                "url": "",
+                "img": "/images/sample/podcast.png"
+            },
+            {
+                "label": "NUGU와 함께라면 선물이 팡팡 쏟아진다!",
+                "url": "",
+                "img": "/images/sample/nugu.png"
+            }
+        ],
+        "skills": [
+            {
+                "label": "7분 운동",
+                "icon": "fitness_center",
+                "color": "blue",
+                "url": "/skill",
+                "status": "disabled",
+                "basic": [
+                    "아리아, 7분 운동 시작",
+                    "아리아, 17분 운동 시작"
+                ]
+            },
+            {
+                "label": "3분 카레",
+                "icon": "fitness_center",
+                "color": "blue",
+                "basic": [
+                    "아리아, 3분 카레",
+                    "아리아, 4분 카레",
+                    "아리아, 5분 카레"
+                ]
+            },
+            {
+                "label": "3분 카레",
+                "icon": "fitness_center",
+                "color": "blue",
+                "status": "disabled",
+                "basic": [
+                    "아리아, 3분 카레",
+                    "아리아, 4분 카레",
+                    "아리아, 5분 카레"
+                ]
+            },
+            {
+                "label": "3분 카레",
+                "icon": "fitness_center",
+                "color": "blue",
+                "status": "disabled",
+                "basic": [
+                    "아리아, 3분 카레",
+                    "아리아, 4분 카레",
+                    "아리아, 5분 카레"
+                ]
+            },
+            {
+                "label": "3분 카레",
+                "icon": "fitness_center",
+                "color": "blue",
+                "status": "disabled",
+                "basic": [
+                    "아리아, 3분 카레",
+                    "아리아, 4분 카레",
+                    "아리아, 5분 카레"
+                ]
+            },
+            {
+                "label": "3분 카레",
+                "icon": "fitness_center",
+                "color": "blue",
+                "status": "disabled",
+                "basic": [
+                    "아리아, 3분 카레",
+                    "아리아, 4분 카레",
+                    "아리아, 5분 카레"
+                ]
+            },
+            {
+                "label": "3분 카레",
+                "icon": "fitness_center",
+                "color": "blue",
+                "status": "disabled",
+                "basic": [
+                    "아리아, 3분 카레",
+                    "아리아, 4분 카레",
+                    "아리아, 5분 카레"
+                ]
+            },
+            {
+                "label": "3분 카레",
+                "icon": "fitness_center",
+                "color": "blue",
+                "status": "disabled",
+                "basic": [
+                    "아리아, 3분 카레",
+                    "아리아, 4분 카레",
+                    "아리아, 5분 카레"
+                ]
+            }
+        ]
     }
 }

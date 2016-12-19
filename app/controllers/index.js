@@ -19,6 +19,28 @@ router.get('/melon', (req, res) => {
     });
 });
 
+router.get('/melon2', (req, res) => {
+    res.render( 'melon2', {
+        title: 'MELON',
+        root: false,
+        local: '/'
+    });
+});
+
+router.get('/domino', (req, res) => {
+    res.render( 'domino', {
+        title: '주소설정',
+        root: false
+    });
+});
+
+router.get('/skill', (req, res) => {
+    res.render( 'skill', {
+        title: '7분 운동',
+        root: false
+    });
+});
+
 // event tests
 router.get( '/event', ( req, res ) => {
     res.render( 'event', {
@@ -34,12 +56,12 @@ router.get( '/event', ( req, res ) => {
 //     });
 // });
 
-router.get( '/store', (req, res)=> {
-    res.render( 'store', {
-        title: 'STORE',
-        root: false,
-    });
-});
+// router.get( '/store', (req, res)=> {
+//     res.render( 'store', {
+//         title: 'STORE',
+//         root: false,
+//     });
+// });
 
 router.get( '/masonry', ( req, res )=> {
     res.render( 'masonry', {
@@ -54,15 +76,6 @@ router.get( '/grayscale', ( req, res )=> {
         title: 'NUGU',
         root: true,
         grayscale: true
-    });
-});
-
-// management
-router.get( '/management', ( req, res )=> {
-    res.render( 'management/index', {
-        title: 'Management',
-        csrf: req.csrfToken(),
-        root: true
     });
 });
 

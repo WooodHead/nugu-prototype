@@ -15,7 +15,7 @@ const grammar = '#JSGF V1.0; grammar funcs; public <funcs> = 도미노|피자;';
 const startButton = document.querySelector( '#logo' );
 let recog_status = false;
 const vr_domino = new SpeechSynthesisUtterance();
-vr_domino.text = "피자 주문이 완료되었습니다";
+vr_domino.text = "김 누구님, 반갑습니다. 아리아, 라고 저를 불러 주시 면 대화 를 시작 할 수 있어요. 오늘 날씨 를 물어 봐 주실래요?";
 vr_domino.lang = 'ko-KR';
 
 
@@ -108,7 +108,7 @@ recognition.onresult = ( event ) => {
 
 
 // speech end
-wakeup.start();
+// wakeup.start();
 recognition.onspeechend = function() { endSpeech() };
 recognition.onnomatch = function() { console.log( 'failed' ) };
 recognition.onerror = ( event ) => { console.log( event.error ) };

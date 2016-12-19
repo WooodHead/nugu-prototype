@@ -4,74 +4,67 @@ block content
     main#main
         ul#cards
             li.grid-size
-
-            h3.cd.cd-title.t3 Grid
-            li.cd.event.t3
-                .card-wrap.light-blue.lighten-2
-                    div.cd-content
-
-            li.cd.skills.t2
-                .card-wrap.light-blue.lighten-2
-                    div.cd-content
-
-            li.cd.skills.t1
-                .card-wrap.light-blue.lighten-2
-                    div.cd-content
-
-            li.cd.skills.t1
-                .card-wrap.light-blue.lighten-2
-                    div.cd-content
-
-            li.cd.skills.t2
-                .card-wrap.light-blue.lighten-2
-                    div.cd-content
-
-            li.cd.skills.t3
-                .card-wrap.light-blue.lighten-2
-                    div.cd-content
-
-            h3.cd.cd-title.t3 Example
-
-            li.cd.event.t3
-                .card-wrap.lighten-2
-                    div.cd-content
-                        img( src="/images/sample/0x0ss-85.jpg" )
-
-            li.cd.event.t3
-                .card-wrap.lighten-2
-                    div.cd-content
-                        img( src="/images/sample/0x0ss-85-1.jpg" )
-
-            li.cd.event.t3
-                .card-wrap.lighten-2
-                    div.cd-content
-                        img( src="/images/sample/flowcase_680_260_1x_2x-1.jpg" )
-
-            li.cd.event.t2
-                .card-wrap.light-blue.lighten-2
-                    div.cd-content
-                        img( src="/images/sample/flowcase_680_260_1x_2x.jpg" )
-
-            li.cd.event.t1
-                .card-wrap.light-blue.lighten-2
-                    div.cd-content
-                        img( src="/images/sample/thanks_to_you_process_1_large_2x.png" )
-
-            li.cd.event.t3
-                .card-wrap.lighten-2
-                    div.cd-content
-                        img( src="/images/sample/flowcase_680_260_1x_2x-2.jpg" )
             
-            li.cd.event.t1
-                .card-wrap.light-blue.lighten-2
-                    div.cd-content
-                        img( src="/images/sample/thanks_to_you_process_1_large_2x.png" )
+            //- 
+            li#ts0.cd.t3.status2
+                div.card-wrap.grey.lighten-4
+                    header.cd-header.grey.lighten-2
+                        i.material-icons.service-icon local_pizza
+                        p.status2-title 도미노피자 <b>(배달중)</b>
+                        a( href="javascript:void(0)" data-id="ts0" ).status-close: i.material-icons highlight_off
 
-            li.cd.event.t2
-                .card-wrap.light-blue.lighten-2
-                    div.cd-content
-                        img( src="/images/sample/flowcase_680_260_1x_2x-3.jpg" )
+                    .cd-content.cd-content-status
+                        p.
+                            포테이토 피자 (라지, 나폴리) + 코카콜라 1.5l<br>
+                            15:34 배달 예정<br>
 
+            li#ts1.cd.t3.status2
+                div.card-wrap.grey.lighten-4
+                    header.cd-header.grey.lighten-2
+                        i.material-icons.service-icon local_taxi
+                        p.status2-title 콜택시 <b>(접수완료)</b>
+                        a( href="javascript:void(0)" data-id="ts1" ).status-close: i.material-icons highlight_off
+
+                    .cd-content.cd-content-status
+                        p.
+                            잠실 제2 롯데월드행 / 서울 바 3751<br>
+                            13:28 도착 예정
+
+            li#ts2.cd.t3.status2
+                div.card-wrap.grey.lighten-4
+                    header.cd-header.grey.lighten-2
+                        i.material-icons.service-icon shopping_basket
+                        p.status2-title 11번가 <b>(구매완료)</b>
+                        a( href="javascript:void(0)" data-id="ts2" ).status-close: i.material-icons highlight_off
+
+                    .cd-content.cd-content-status
+                        p.
+                            빌로밀로 타조백<br>
+                            2016.12.16 배송 예정<br>
+
+            li#ts3.cd.t3.status2
+                div.card-wrap.grey.lighten-4
+                    header.cd-header.grey.lighten-2
+                        i.material-icons.service-icon restaurant
+                        p.status2-title BBQ <b>(조리중)</b>
+                        a( href="javascript:void(0)" data-id="ts3" ).status-close: i.material-icons highlight_off
+
+                    .cd-content.cd-content-status
+                        p.
+                            양념 반 후라이드 반<br>
+                            30분 뒤 배달 예정<br>
+
+            li#group.t3
+                div.card-wrap
+                    header.cd-header.grey.lighten-2
+                        span#group-header
+                        a( href="javascript:void(0)" data-id="group" class="status-grouper" ): i#gr-icon.material-icons keyboard_arrow_down
+
+            //- li#ts2.cd.t3.status2
+            //-     div.card-wrap.grey.lighten-4
+            //-         header.cd-header.grey.lighten-2
+            //-             i.material-icons.service-icon timelapse
+            //-             p.status2-title 현재 진행중인 상태 ( 2 )
 
             //- Jin's cards
             

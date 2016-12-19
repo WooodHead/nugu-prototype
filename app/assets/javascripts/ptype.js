@@ -3,6 +3,8 @@
 // Materialize prototype
 $( '.snb' ).sideNav();
 $( '#apps' ).modal({ opacity: 0.9 });
+$( 'ul.tabs' ).tabs( 'select_tab', 'tab_id' );
+
 
 // Playbacks
 const pb_collapse = document.querySelector( '#pb-collapse' );
@@ -26,14 +28,9 @@ const pb_open = function() {
 pb_collapse.addEventListener( 'click', pb_close );
 
 // service nav
-const appss      = $( '#apps' );
-const navTL      = new TimelineMax();
-const childTL    = new TimelineMax({ onComplete: ctlCallback });
-const items      = document.querySelectorAll( '.app-item' );
-const testItem   = document.querySelector( '#test2' );
-const childList  = document.querySelector( '#test-childs' );
-const childItems = document.querySelectorAll( '.child-item' );
-let child_status = false;
+const appss = $( '#apps' );
+const navTL = new TimelineMax();
+const items = document.querySelectorAll( '.app-item' );
 
 // TL:modal
 navTL.add( TweenMax.to( appss, 0.3, { height: '100%', ease: Strong.easeOut }), 'modal' );
@@ -44,54 +41,67 @@ items.forEach( ( item, i ) => navTL.add( TweenMax.from( item, 0.33, { x: "-=20",
 // stop and ready
 navTL.stop();
 
-childTL.add( TweenMax.from( childList, 0.3, { height: 0, ease: Strong.easeOut }) );
-childTL.add( 'childs' );
-childItems.forEach( ( child, i ) => {
-    childTL.add( TweenMax.from( child, 0.3, { x: "+=20", y: "-=20", opacity: 0 } ), `childs+=${0.1 * i}` );
-})
-childTL.stop();
-// test item events
-testItem.addEventListener( 'click', event => {
-    blurItems( event.currentTarget );
-});
+if ( !appss.hasClass( 'no-tween' ) ) {
+    const testItem   = document.querySelector( '#test2' );
+    const childList  = document.querySelector( '#test-childs' );
+    const childItems = document.querySelectorAll( '.child-item' );
+    let child_status = false;
+    const childTL    = new TimelineMax({ onComplete: ctlCallback });
 
-function ctlCallback() {
-    appss.on( 'click', function( event ){
-        unblurItems();
-    });
-}
-
-function blurItems( current ) {
-    // focus & blur
-    items.forEach( item =>  {
-        if ( item !== current ) {
-            item.classList.add( 'ai-blur' )
-            TweenMax.set( item, {opacity: '0.3'} );
-        } else {
-            item.classList.add( 'ai-focus' )
-        }
+    childTL.add( TweenMax.from( childList, 0.3, { height: 0, ease: Strong.easeOut }) );
+    childTL.add( 'childs' );
+    childItems.forEach( ( child, i ) => {
+        childTL.add( TweenMax.from( child, 0.3, { x: "+=20", y: "-=20", opacity: 0 } ), `childs+=${0.1 * i}` );
+    })
+    childTL.stop();
+    // test item events
+    testItem.addEventListener( 'click', event => {
+        blurItems( event.currentTarget );
     });
 
-    // then
-    childTL.play();
+    function ctlCallback() {
+        appss.on( 'click', function( event ){
+            unblurItems();
+        });
+    }
+
+    function blurItems( current ) {
+        // focus & blur
+        items.forEach( item =>  {
+            if ( item !== current ) {
+                item.classList.add( 'ai-blur' )
+                TweenMax.set( item, {opacity: '0.3'} );
+            } else {
+                item.classList.add( 'ai-focus' )
+            }
+        });
+
+        // then
+        childTL.play();
+    }
+
+    childTL.eventCallback( 'onReverseComplete', function() {
+        items.forEach( item => {
+            if( item == testItem ) {
+                item.classList.remove( 'ai-focus' );
+            } else {
+                item.classList.remove( 'ai-blur' );
+                TweenMax.set( item, { opacity: '1' } );
+            }
+        });
+    })
+
+    function unblurItems() {
+        child_status = false;
+        childTL.reverse();
+        appss.off( 'click' );
+    }
 }
 
-childTL.eventCallback( 'onReverseComplete', function() {
-    items.forEach( item => {
-        if( item == testItem ) {
-            item.classList.remove( 'ai-focus' );
-        } else {
-            item.classList.remove( 'ai-blur' );
-            TweenMax.set( item, { opacity: '1' } );
-        }
-    });
-})
-
-function unblurItems() {
-    child_status = false;
-    childTL.reverse();
-    appss.off( 'click' );
-}
+// open service nav
+$( '#open-apps' ).click( event => navTL.play() );
+// close service nav
+$( '#close-apps' ).click( event=> navTL.reverse() );
 
 
 /*========================================
@@ -323,10 +333,10 @@ function renderRandom() {
         msnry.appended( card.elem )
     }
 
-    msnry.layout();
-
     event_collection.forEach( event => $(event.elem).find('.card-wrap').css( 'border-top', '5px solid red' ) );
     offer_collection.forEach( event => $(event.elem).find('.card-wrap').css( 'border-top', '5px solid blue' ) );
+
+    msnry.layout();
 }
 
 /**
@@ -356,7 +366,7 @@ function renderBasicAndRandom() {
 //     console.log( data );
 // } );
 
-$.getJSON( 'data/service.json' ).done( data => {
+$.getJSON( '/data/service.json' ).done( data => {
     // for( let [key, val] of Object.entries(data.service) ) {
     for( let key in data.service ) {
         let val = data.service[key];
@@ -375,13 +385,6 @@ $.getJSON( 'data/service.json' ).done( data => {
     // renderBasicAndRandom();
     renderRandom();
 });
-
-msnry.layout();
-
-// open service nav
-$( '#open-apps' ).click( event => navTL.play() );
-// close service nav
-$( '#close-apps' ).click( event=> navTL.reverse() );
 
 
 function testStatus( qs ) {
@@ -450,20 +453,21 @@ function showStatusPop() {
 
 // reverse all status
 function reverseAllStatus() {
-    once = false;
-    TweenMax.set( gr, { top: '-50' });
-    gr_on = false;
+    if ( gr ) {
+        once = false;
+        TweenMax.set( gr, { top: '-50' });
+        gr_on = false;
+        $( '.status2' ).each( function( i, el ){
+            let _top = 139 * i;
 
-    $( '.status2' ).each( function( i, el ){
-        let _top = 139 * i;
-
-        el.removeClass( 'minified' );
-        el.css({
-            'position': 'absolute',
-            'top': _top
+            el.removeClass( 'minified' );
+            el.css({
+                'position': 'absolute',
+                'top': _top
+            });
         });
-    });
-    msnry.layout();
+        msnry.layout();
+    }
 }
 
 // check status pop position
@@ -483,6 +487,7 @@ let gr_status = false;
 const gr = document.querySelector( '#group' );
 const gr_icon = document.querySelector( '#gr-icon' );
 
+/*
 gr.addEventListener( 'click', function( event ){
     const group_header = document.querySelector( '#group-header' );
     let ss = document.querySelectorAll( '.status2' );
@@ -516,7 +521,7 @@ gr.addEventListener( 'click', function( event ){
 
     }
 });
-
+*/
 function hidegrItems(){
     gr_status = false;
     let ss = document.querySelectorAll( '.status2' );
@@ -595,10 +600,12 @@ function headerToggle( dy ) {
         gh.hide();
         if ( once && deep ) {
             deep = false;
-            TweenMax.to( gr, 0.3, { top: '-=56', ease: Strong.easeOut } );
-            $( '.status2' ).each( function( i, el ){
-                TweenMax.to( el, 0.3, { top: '-=56', ease: Strong.easeInOut, delay: i * 0.07 });
-            })
+            if ( gr ) {
+                TweenMax.to( gr, 0.3, { top: '-=56', ease: Strong.easeOut } );
+                $( '.status2' ).each( function( i, el ){
+                    TweenMax.to( el, 0.3, { top: '-=56', ease: Strong.easeInOut, delay: i * 0.07 });
+                })
+            }
         }        
     }
 
@@ -606,10 +613,12 @@ function headerToggle( dy ) {
         gh.show();
         if ( once ) {
             deep = true;
-            TweenMax.to( gr, 0.3, { top: '+=56', ease: Strong.easeOut } );
-            $( '.status2' ).each( function( i, el ){
-                TweenMax.to( el, 0.3, { top: '+=56', ease: Strong.easeInOut });
-            })
+            if ( gr ) {
+                TweenMax.to( gr, 0.3, { top: '+=56', ease: Strong.easeOut } );
+                $( '.status2' ).each( function( i, el ){
+                    TweenMax.to( el, 0.3, { top: '+=56', ease: Strong.easeInOut });
+                })
+            }
         }
     }
 }
@@ -634,7 +643,8 @@ function scrollEventHandler( deltaY ) {
     let pageBottom   = scrollY + windowHeight;
 
     if ( gr_status )
-        hidegrItems();
+        if ( gr )
+            hidegrItems();
     if ( window.scrollY < by )
         reverseAllStatus();
     if ( window.scrollY > by && event.deltaY > 0 && !once ) {

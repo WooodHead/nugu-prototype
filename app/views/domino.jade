@@ -1,0 +1,15 @@
+extends layout/mobile
+
+block content
+    main.main
+        h1.center 주소설정
+        p.center.
+            아파트 동호수, 빌라 동호수, 사무실 층수, 단독주택 등은<br>
+            상세주소에 추가 등록하세요.
+        form.row
+            div.input-field.col.s8
+                input( type="text" )#account.validate
+                label( for="account" ) 주소검색
+
+            div.input-field.col.s4
+                a( href="/" )#test-submit.grey.darken-2.waves-effect.waves-light.btn 검색

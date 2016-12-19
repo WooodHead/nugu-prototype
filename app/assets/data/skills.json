@@ -1,0 +1,34 @@
+{
+    "skills": {
+        "fit0": {
+            "label": "7분 운동하기",
+            "icon": "fitness_center",
+            "color": "blue",
+            "basic": [
+                "아리아, 7분 운동 시작해줘",
+                "아리아, 10분 운동 시작해줘",
+                "아리아, 10분 등 운동 시작해줘"
+            ]
+        },
+        "fit1": {
+            "label": "3분 카레",
+            "icon": "fitness_center",
+            "color": "blue",
+            "basic": [
+                "아리아, 3분 카레",
+                "아리아, 4분 카레",
+                "아리아, 5분 카레"
+            ]
+        },
+        "fit1": {
+            "label": "3분 카레",
+            "icon": "fitness_center",
+            "color": "blue",
+            "basic": [
+                "아리아, 3분 카레",
+                "아리아, 4분 카레",
+                "아리아, 5분 카레"
+            ]
+        }
+    }
+}

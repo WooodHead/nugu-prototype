@@ -1,4 +1,17 @@
-extends ../layout/management
+extends ../layout/managementIndex
 
 block content
+    header#global-header
+        div#pi
+            h1 NUGU &amp; PXD
+
+        nav#gnb
+            a( href="#" ) Service
+            a( href="#" ) Command
+
+        ul#service-list
+            each service in services
+                li= service
+
+    
     main#main

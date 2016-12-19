@@ -1,0 +1,45 @@
+- var mode = 'dev';
+- var css = '/stylesheets';
+- var js = '/javascripts';
+- var bower = '/bower_components';
+
+if mode == 'build'
+    - var css = 'css';
+    - var js = 'js';
+    - var bower = 'js';
+    
+
+doctype html
+html
+    head
+        meta( charset="utf-8" )
+        meta( name="viewport" content="width=device-width, initial-scale=1.0" )
+        
+        meta(http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;")
+        meta( name="format-detection" content="telephone=no" )
+        meta( name="msapplication-tap-highlight" content="no" )
+        meta( name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" )
+
+        title NUGU - prototypes
+        
+        link( href=css + "/material-icons.css" rel="stylesheet" )
+        link( href=css + "/materialize.css" type="text/css" rel="stylesheet" )
+        link( href=css + "/ptype.css" type="text/css" rel="stylesheet" )
+    body
+        include header
+
+        block content
+        
+        block screen
+
+        //- Lib
+        script( src=bower + "/gsap/src/minified/TimelineMax.min.js" )
+        script( src=bower + "/gsap/src/minified/TweenMax.min.js" )
+        script( src=bower + "/gsap/src/minified/plugins/CSSPlugin.min.js" )
+        script( src=bower + "/gsap/src/minified/plugins/ScrollToPlugin.min.js" )
+        script( src=bower + "/masonry/masonry.pkgd.min.js" )
+        script( src=bower + "/jquery/dist/jquery.min.js" )
+        script( src=bower + "/materialize/dist/js/materialize.min.js" )
+        script( src=js + "/A4B.Lib.min.js" )
+        script( src=js + "/ptype.js" )
+        script( src=js + "/speech.js" )

@@ -3,6 +3,10 @@ html
     head
         meta( charset="utf-8" )
         meta( name="viewport" content="width=device-width, initial-scale=1.0" )
+        
+        meta( name="apple-mobile-web-app-capable" content="yes" )
+        meta( name="apple-mobile-web-app-status-bar-style" content="black" )
+
         title NUGU - prototypes
         
         link( href="/stylesheets/material-icons.css" rel="stylesheet" )
@@ -19,13 +23,14 @@ html
         script( src="/bower_components/gsap/src/minified/TimelineMax.min.js" )
         script( src="/bower_components/gsap/src/minified/TweenMax.min.js" )
         script( src="/bower_components/gsap/src/minified/plugins/CSSPlugin.min.js" )
+        script( src="/bower_components/gsap/src/minified/plugins/ScrollToPlugin.min.js" )
         script( src="/bower_components/masonry/masonry.pkgd.min.js" )
         script( src="/bower_components/jquery/dist/jquery.min.js" )
         script( src="/bower_components/materialize/dist/js/materialize.min.js" )
         script( src="/javascripts/A4B.Lib.min.js" )
-        
+        //- script( src="/javascripts/A4B.Lib.js" )
         script( src="/javascripts/prototype.js" )
-        script( src="javascripts/speech.js" )
+        //- script( src="javascripts/speech.js" )
 
         // - if ( title == 'Masonry' )
         //     script( src="/bower_components/masonry/masonry.pkgd.min.js" )
