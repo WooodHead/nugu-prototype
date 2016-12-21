@@ -27,10 +27,12 @@ const pb_open = function() {
 }
 pb_collapse.addEventListener( 'click', pb_close );
 
+
 // service nav
 const appss = $( '#apps' );
 const navTL = new TimelineMax();
 const items = document.querySelectorAll( '.app-item' );
+
 
 // TL:modal
 navTL.add( TweenMax.to( appss, 0.3, { height: '100%', ease: Strong.easeOut }), 'modal' );
@@ -41,7 +43,9 @@ items.forEach( ( item, i ) => navTL.add( TweenMax.from( item, 0.33, { x: "-=20",
 // stop and ready
 navTL.stop();
 
+
 if ( !appss.hasClass( 'no-tween' ) ) {
+    // media button in apps
     const testItem   = document.querySelector( '#test2' );
     const childList  = document.querySelector( '#test-childs' );
     const childItems = document.querySelectorAll( '.child-item' );
@@ -70,7 +74,7 @@ if ( !appss.hasClass( 'no-tween' ) ) {
         items.forEach( item =>  {
             if ( item !== current ) {
                 item.classList.add( 'ai-blur' )
-                TweenMax.set( item, {opacity: '0.3'} );
+                TweenMax.set( item, {opacity: '0.3', y: '-=250'} );
             } else {
                 item.classList.add( 'ai-focus' )
             }
@@ -84,9 +88,10 @@ if ( !appss.hasClass( 'no-tween' ) ) {
         items.forEach( item => {
             if( item == testItem ) {
                 item.classList.remove( 'ai-focus' );
+                TweenMax.set( item, { y: '0'} );
             } else {
                 item.classList.remove( 'ai-blur' );
-                TweenMax.set( item, { opacity: '1' } );
+                TweenMax.set( item, { opacity: '1', y: '0' } );
             }
         });
     })
@@ -96,12 +101,73 @@ if ( !appss.hasClass( 'no-tween' ) ) {
         childTL.reverse();
         appss.off( 'click' );
     }
+
+    // app button in apps
+    const testItem2   = document.querySelector( '#app-button' );
+    const childList2  = document.querySelector( '#test-childs2' );
+    const childItems2 = document.querySelectorAll( '.child-item2' );
+    let child_status2 = false;
+    const childTL2    = new TimelineMax({ onComplete: ctlCallback2 });
+
+    childTL2.add( TweenMax.from( childList2, 0.3, { height: 0, ease: Strong.easeOut }) );
+    childTL2.add( 'childs' );
+    childItems2.forEach( ( child, i ) => {
+        childTL2.add( TweenMax.from( child, 0.3, { x: "+=20", y: "-=20", opacity: 0 } ), `childs+=${0.1 * i}` );
+    })
+    childTL2.stop();
+    // test item events
+    testItem2.addEventListener( 'click', event => {
+        blurItems2( event.currentTarget );
+    });
+
+    function ctlCallback2() {
+        appss.on( 'click', function( event ){
+            unblurItems2();
+        });
+    }
+
+    function blurItems2( current ) {
+        // focus & blur
+        items.forEach( item =>  {
+            if ( item !== current ) {
+                item.classList.add( 'ai-blur' )
+                TweenMax.set( item, {opacity: '0.3', y: '-=250'} );
+            } else {
+                item.classList.add( 'ai-focus' )
+                TweenMax.set( item, { y: '-=250'} );
+            }
+        });
+
+        // then
+        childTL2.play();
+    }
+
+    childTL2.eventCallback( 'onReverseComplete', function() {
+        items.forEach( item => {
+            if( item == testItem2 ) {
+                item.classList.remove( 'ai-focus' );
+                TweenMax.set( item, { y: '0'} );
+            } else {
+                item.classList.remove( 'ai-blur' );
+                TweenMax.set( item, { opacity: '1', y: '0' } );
+            }
+        });
+    })
+
+    function unblurItems2() {
+        child_status2 = false;
+        childTL2.reverse();
+        appss.off( 'click' );
+    }
 }
+
 
 // open service nav
 $( '#open-apps' ).click( event => navTL.play() );
 // close service nav
 $( '#close-apps' ).click( event=> navTL.reverse() );
+
+
 
 
 /*========================================
@@ -118,14 +184,15 @@ let offer_collection    = [];
 let event_collection    = [];
 
 const container = document.querySelector( '#cards' );
-const msnry = new Masonry( container, {
-    itemSelector: '.cd',
-    columnWidth: '.grid-size',
-    percentWidth: true
-});
-
+let msnry = {};
+if ( container ) {
+    msnry = new Masonry( container, {
+        itemSelector: '.cd',
+        columnWidth: '.grid-size',
+        percentWidth: true
+    });
+}
 const cardsList = document.getElementById( 'cards' );
-
 
 // Card
 class Card {
@@ -302,7 +369,7 @@ function renderRandom() {
     // msnry.layout();
 
     // shuffle collection
-    cards_collection.shuffle(true);
+    // cards_collection.shuffle(true);
 
     let offer_index = 0;
     let event_index = 0;
@@ -339,53 +406,27 @@ function renderRandom() {
     msnry.layout();
 }
 
-/**
-function renderBasicAndRandom() {
-    cards_collection.forEach( card => msnry.remove( card.elem ) );
-    msnry.layout();
-
-
-    basic_collection.shuffle( true );
-    advanced_collection.shuffle( true );
-
-    basic_collection.forEach( card => {
-        cardsList.appendChild( card.elem );
-        msnry.appended( card.elem );
-    });
-
-    advanced_collection.forEach( card => {
-        cardsList.appendChild( card.elem );
-        msnry.appended( card.elem );
-    });
-
-    msnry.layout();
-}
-*/
-
-// $.getJSON( 'data/category.json' ).done( data => {
-//     console.log( data );
-// } );
-
-$.getJSON( '/data/service.json' ).done( data => {
-    // for( let [key, val] of Object.entries(data.service) ) {
-    for( let key in data.service ) {
-        let val = data.service[key];
-        switch( key ) {
-            case 'skills':
-                val.forEach( skill => createSkill( skill ) );
-                break;
-            case 'events':
-                val.forEach( event => createEvent( event ) );
-                break;
-            default:
-                new Service( val );
+if ( msnry.element ) {
+    $.getJSON( '/data/service.json' ).done( data => {
+        // for( let [key, val] of Object.entries(data.service) ) {
+        for( let key in data.service ) {
+            let val = data.service[key];
+            switch( key ) {
+                case 'skills':
+                    val.forEach( skill => createSkill( skill ) );
+                    break;
+                case 'events':
+                    val.forEach( event => createEvent( event ) );
+                    break;
+                default:
+                    new Service( val );
+            }
         }
-    }
 
-    // renderBasicAndRandom();
-    renderRandom();
-});
-
+        // renderBasicAndRandom();
+        renderRandom();
+    });
+}
 
 function testStatus( qs ) {
     const $obj = $( qs );
@@ -596,7 +637,7 @@ const gh = {
 };
 
 function headerToggle( dy ) {
-    if ( gh_status && dy > 0 ) {
+    if ( gh_status && dy > 5 ) {
         gh.hide();
         if ( once && deep ) {
             deep = false;
@@ -636,7 +677,10 @@ function headerToggle( dy ) {
 //     });
 // }
 
+
 function scrollEventHandler( deltaY ) {
+
+    if ( !$( '#cards' ).length ) return false;
 
     let scrollY      = window.scrollY;
     let windowHeight = window.innerHeight;
@@ -652,7 +696,6 @@ function scrollEventHandler( deltaY ) {
     }
 
     headerToggle( deltaY );
-    // scrollTestObject( pageBottom );
 
 }
 

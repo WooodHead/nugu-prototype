@@ -4,7 +4,7 @@
             "label": "멜론",
             "icon": "library_music",
             "color": "blue",
-            "url": "/melon",
+            "url": "/ptype/melon/account",
             "basic": [
                 "아리아, 음악 들려줘",
                 "아리아, 최신음악 틀어줘",
@@ -66,6 +66,7 @@
             "label": "스마트홈",
             "icon": "settings_remote",
             "color": "pink",
+            "url": "/ptype/smarthome",
             "basic": [
                 "아리아, 스마트플러그 켜줘",
                 "아리아, 스마트플러그 전부 다 켜줘",
@@ -148,7 +149,7 @@
         "domino": {
             "label": "도미노피자",
             "icon": "local_pizza",
-            "url": "/domino",
+            "url": "/ptype/domino",
             "color": "red",
             "basic": [
                 "아리아, 도미노 피자 주문해줘",
@@ -172,7 +173,7 @@
             "label": "BBQ",
             "icon": "motorcycle",
             "color": "red",
-            "url": "/domino",
+            "url": "/ptype/bbq",
             "basic": [
                 "아리아, BBQ 주문해줘",
                 "아리아, BBQ 시켜줘"

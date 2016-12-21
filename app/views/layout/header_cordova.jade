@@ -106,8 +106,9 @@ ul#slide-out.side-nav
         li: a( href="#!" ).waves-effect <i class="material-icons">help_outline</i> 고객센터
 
     li: a( href="/ptype/introduction" ).waves-effect.pt # 기기연결 / 최초실행
-    li: a( href="/ptype/" ).waves-effect.pt # Navigation A 타입
+    li: a( href="/ptype" ).waves-effect.pt # Navigation A 타입
     li: a( href="/ptype/b" ).waves-effect.pt # Navigation B 타입
+    li: a( href="/" ).waves-effect.pt # 현재 상태 HOME ( 새창 )
 
 
 header#global-nav
@@ -117,14 +118,14 @@ header#global-nav
             
             ul#nav-mobile.left
                 - if ( !root )
-                    li: a( href=( local ? local : 'javascript:window.history.back();' ) class="back" ): i.material-icons keyboard_arrow_left
+                    li: a( href=( local ? local : '/ptype/' ) class="back" ): i.material-icons keyboard_arrow_left
                 - else
                     li: a( href="#" data-activates="slide-out" class="snb" ): i.material-icons menu
             
             ul#nav-mobile2.right
                 - if ( title == "STORE" )
                     li: a( href="#!" )#open-search: i.material-icons search
-                - else if ( gnb_right !== false )
+                - else if ( root )
                     li: a( href="#!" )#open-apps: i.material-icons apps
 
 //- Service Nav

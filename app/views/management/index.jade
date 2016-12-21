@@ -9,9 +9,12 @@ block content
             a( href="#" ) Service
             a( href="#" ) Command
 
+        ul#category-list
+            each category in categories
+                li= category
+
         ul#service-list
             each service in services
                 li= service
-
     
     main#main

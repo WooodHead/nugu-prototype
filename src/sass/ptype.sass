@@ -179,6 +179,9 @@ nav .brand-logo
         width: 100%
         height: auto
 
+.event
+    min-height: 143px
+
 // status
 .status
     padding: 3px 0 3px 60px
@@ -615,15 +618,22 @@ ul.apps-list
         font-size: 2.3rem
         margin-top: 16px
 
-#test-childs
+#test-childs, #test-childs2
     @extend .clear
     position: absolute
+    background: #111
     width: 100%
-    top: 146px
-    height: 148px
     z-index: 10
 
-.child-item
+#test-childs
+    top: 146px
+    height: 148px
+
+#test-childs2
+    top: 146px
+    height: 287px
+
+.child-item, .child-item2
     width: 33.3333%
     position: relative
     float: left
@@ -661,7 +671,8 @@ ul.apps-list
             margin-top: 20px
 
 .ai-blur
-    filter: blur( 1.8px )
+    // filter: blur( 1.8px )
+    transform: matrix(1, 0, 0, 1, 0, -250)
     opacity: .3
     transition: .2s ease-out
 
@@ -674,6 +685,20 @@ ul.apps-list
         .material-icons
             margin-top: 14px
 
+// .ai-blur
+//     filter: blur( 1.8px )
+//     transform: matrix(1, 0, 0, 1, 0, -250)
+//     opacity: .3
+//     transition: .2s ease-out
+
+//     .circle-item
+//         transition-timing-function: ease-out
+//         width: 58px
+//         height: 58px
+//         border-radius: 29px
+
+//         .material-icons
+//             margin-top: 14px
 
 #close-apps
     margin: 1em 1em 0 0
@@ -886,3 +911,81 @@ ul.apps-list
     .material-icons
         font-size: 1rem
         margin: 0
+
+// introduction
+#introduction
+    margin-top: -62px
+    padding: 1em
+
+.intro-nav
+    width: 50px
+    height: 50px
+    border-radius: 50%
+    line-height: 50px
+    text-align: center
+    color: black
+
+    .material-icons
+        line-height: 50px
+
+#next
+    width: 90%
+    margin-left: 5%
+    height: 44px
+    line-height: 44px
+    font-size: 1.2rem
+
+.intro-content
+    position: relative
+    width: 100%
+    overflow: hidden
+    margin-bottom: 30px
+
+#img-container
+    position: relative
+    width: 500%
+    img
+        float: left
+        width: 20%
+        height: auto
+
+#prev
+    visibility: hidden
+    
+
+// snb prototype options
+.pt
+    &:visited, &:link
+        color: red
+
+#login
+    margin-top: -52px
+    display: block
+
+    img
+        width: 100%
+        height: auto
+
+.suck
+    font-family: serif
+    font-size: 20px
+
+.dd-img, .welcome
+    width: 100%
+    height: auto
+
+.ww
+    .cd-content
+        padding: 0
+        line-height: 0
+
+.ttt
+    &:link, &:visited
+        color: white
+
+#test-image-page
+    padding-top: 52px
+    
+    img
+        width: 100%
+        height: auto

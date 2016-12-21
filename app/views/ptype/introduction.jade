@@ -1,5 +1,19 @@
-extends layout/ptype
+extends layout/ptype_introduction
 
 block content
-    main#introduction
+    main( data-step="0" )#introduction
+        header.clear
+            a( href="#!" id="prev" ).intro-nav.waves-effect.fl: i.material-icons keyboard_arrow_left
+            a( href="#!" id="skip" ).intro-nav.waves-effect.fr: i.material-icons close
         
+        
+        #ic.intro-content
+            div#img-container
+                img( src="/images/intro/step0.jpg" )
+                img( src="/images/intro/step1.jpg" )
+                img( src="/images/intro/step2.jpg" )
+                img( src="/images/intro/step3.jpg" )
+                img( src="/images/intro/step4.jpg" )
+
+
+        a( href="#!" id="next" ).intro-nav-next.btn.waves-effect.waves-light.grey.darken-2 연결하기

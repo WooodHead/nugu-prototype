@@ -9,6 +9,7 @@ const serviceSchema = new Schema({
     icon: String,
     url: String,
     status: String,
+    category: String,
     commands: [ { type: Schema.Types.ObjectId, ref: 'Command' } ]
 });
 

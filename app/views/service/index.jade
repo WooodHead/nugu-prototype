@@ -6,7 +6,7 @@ block content
         
         ul.list
             each service in services
-                li= service
+                li: a( href="/service/update/" + service.id )= service
             //- each service in services
             //-     li.cd.tutorial
             //-         div( class=( service.color ? service.color : 'black' ) ).card-wrap.lighten-2
@@ -29,14 +29,26 @@ block content
             div.input-field.col.s12
                 input( type="text" name="title" )#title.validate
                 label( for="title" ) Title
+            
+            div.input-field.col.s12
+                select( name="category" )#service
+                    option( value="" disabled selected ) Category
+                        each category in categories
+                            option( value=category.id )= category.title
+                    
+                label Category
 
             div.input-field.col.s12
                 input( type="text" name="color" )#color
                 label( for="color" ) Color
 
             div.input-field.col.s12
+                input( type="text" name="url" )#url
+                label( for="url" ) URL
+
+            div.input-field.col.s12
                 input( type="text" name="icon" )#icon
-                label( for="icon" ) Icon
+                label( for="icon" ) Icon            
 
             div.input-field.col.s12
                 textarea( name="description" )#description.materialize-textarea

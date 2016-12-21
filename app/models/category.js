@@ -11,4 +11,5 @@ const categorySchema = new Schema({
     status: String
 });
 
+
 mongoose.model( 'Category', categorySchema );
