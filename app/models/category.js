@@ -8,7 +8,8 @@ const categorySchema = new Schema({
     childs: [{ type: Schema.Types.ObjectId, ref: 'Service' }],
     color: String,
     icon: String,
-    status: String
+    status: String,
+    order: Number
 });
 
 

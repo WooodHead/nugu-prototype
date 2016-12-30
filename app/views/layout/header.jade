@@ -10,104 +10,15 @@ ul#slide-out.side-nav
             span( class="name" ) 송누구
             span( class="email" ) nugusong@nugu.co.kr
     
-    if navType == 'b'
-        li: a( href="#!" ).waves-effect <i class="material-icons">lightbulb_outline</i> NUGU 활용하기
-        li: a( href="/ptype/store" ).waves-effect <i class="material-icons">shop</i> 앱마켓
-        li: a( href="#!" ).waves-effect <i class="material-icons">receipt</i> 주문내역
-        li: div.divider
-        //- 뮤직
-        li.no-padding
-            ul.collapsible.collapsible-accordion
-                li
-                    a( class="collapsible-header").waves-effect  뮤직 <i class="material-icons fr">arrow_drop_down</i><i class="material-icons">music_note</i>
-                    div.collapsible-body
-                        ul
-                            li: a( href="#!" ).waves-effect 멜론</a>
-                            li: a( href="#!" ).waves-effect 멜론 어린이</a>
-        
-        //- 스마트홈
-        li.no-padding
-            ul.collapsible.collapsible-accordion
-                li
-                    a( class="collapsible-header").waves-effect  스마트홈 <i class="material-icons fr">arrow_drop_down</i><i class="material-icons">settings_remote</i>
-                    div.collapsible-body
-                        ul
-                            li: a( href="#!" ).waves-effect 스마트홈</a>
-        
-        //- 미디어
-        li.no-padding
-            ul.collapsible.collapsible-accordion
-                li
-                    a( class="collapsible-header").waves-effect  미디어 <i class="material-icons fr">arrow_drop_down</i><i class="material-icons">video_library</i>
-                    div.collapsible-body
-                        ul
-                            li: a( href="#!" ).waves-effect 라디오</a>
-                            li: a( href="#!" ).waves-effect B tv 연동</a>
-                            li: a( href="#!" ).waves-effect 팟캐스트</a>
-                            li: a( href="#!" ).waves-effect 데일리 브리핑</a>
-        
-        //- 주문 배달
-        li.no-padding
-            ul.collapsible.collapsible-accordion
-                li
-                    a( class="collapsible-header").waves-effect  주문/배달 <i class="material-icons fr">arrow_drop_down</i><i class="material-icons">motorcycle</i>
-                    div.collapsible-body
-                        ul
-                            li: a( href="#!" ).waves-effect 도미노피자</a>
-                            li: a( href="#!" ).waves-effect BBQ</a>
-        
-        //- 교통
-        li.no-padding
-            ul.collapsible.collapsible-accordion
-                li
-                    a( class="collapsible-header").waves-effect  교통 <i class="material-icons fr">arrow_drop_down</i><i class="material-icons">traffic</i>
-                    div.collapsible-body
-                        ul
-                            li: a( href="#!" ).waves-effect 길안내</a>
-        
-        //- 개인비서
-        li.no-padding
-            ul.collapsible.collapsible-accordion
-                li
-                    a( class="collapsible-header").waves-effect  개인 비서 <i class="material-icons fr">arrow_drop_down</i><i class="material-icons">assignment_ind</i>
-                    div.collapsible-body
-                        ul
-                            li: a( href="#!" ).waves-effect 위키피디아</a>
-                            li: a( href="#!" ).waves-effect 일정</a>
-                            li: a( href="#!" ).waves-effect 알람</a>
-                            li: a( href="#!" ).waves-effect 날씨</a>
-        
-        //- 유용한기능
-        li.no-padding
-            ul.collapsible.collapsible-accordion
-                li
-                    a( class="collapsible-header").waves-effect  유용한기능 <i class="material-icons fr">arrow_drop_down</i><i class="material-icons">accessibility</i>
-                    div.collapsible-body
-                        ul
-                            li: a( href="#!" ).waves-effect 무드등</a>
-                            li: a( href="#!" ).waves-effect 긴급알림</a>
-                            li: a( href="#!" ).waves-effect 신규 기능 도움말</a>
-        li: div.divider
-        li: a( href="#!" ).waves-effect <i class="material-icons">settings</i> 사용자 설정
-        li: a( href="#!" ).waves-effect <i class="material-icons">perm_device_information</i> 디바이스 정보 및 관리
-        li: a( href="#!" ).waves-effect <i class="material-icons">announcement</i> 공지사항
-        li: a( href="#!" ).waves-effect <i class="material-icons">insert_emoticon</i> 이벤트
-        li: a( href="#!" ).waves-effect <i class="material-icons">help_outline</i> 고객센터
-
-    else
-
-        li: a( href="#!" ).waves-effect <i class="material-icons">lightbulb_outline</i> NUGU 활용하기
-        li: a( href="/ptype/store" ).waves-effect <i class="material-icons">shop</i> 앱마켓
-        li: a( href="#!" ).waves-effect <i class="material-icons">receipt</i> 주문내역
-        li: a( href="#!" ).waves-effect <i class="material-icons">settings</i> 사용자 설정
-        li: a( href="#!" ).waves-effect <i class="material-icons">perm_device_information</i> 디바이스 정보 및 관리
-        li: a( href="#!" ).waves-effect <i class="material-icons">announcement</i> 공지사항
-        li: a( href="#!" ).waves-effect <i class="material-icons">insert_emoticon</i> 이벤트
-        li: a( href="#!" ).waves-effect <i class="material-icons">help_outline</i> 고객센터
-
-    li: a( href="/ptype/introduction" ).waves-effect.pt # 기기연결 / 최초실행
-    li: a( href="/ptype/" ).waves-effect.pt # Navigation A 타입
-    li: a( href="/ptype/b" ).waves-effect.pt # Navigation B 타입
+    li: a( href="javascript:void(0)" data-section="/guide" ).section-control.waves-effect <i class="material-icons">lightbulb_outline</i> NUGU 활용하기
+    li: a( href="/ptype/store" ).waves-effect <i class="material-icons">shop</i> 앱마켓
+    li: a( href="#!" ).waves-effect <i class="material-icons">receipt</i> 주문내역
+    li: a( href="#!" ).waves-effect <i class="material-icons">settings</i> 사용자 설정
+    li: a( href="#!" ).waves-effect <i class="material-icons">perm_device_information</i> 디바이스 정보 및 관리
+    br
+    li: a( href="#!" ).waves-effect <i class="material-icons">announcement</i> 공지사항
+    li: a( href="#!" ).waves-effect <i class="material-icons">insert_emoticon</i> 이벤트
+    li: a( href="#!" ).waves-effect <i class="material-icons">help_outline</i> 고객센터
 
 
 header#global-nav
@@ -116,24 +27,27 @@ header#global-nav
             a( href="#" class="brand-logo center")#logo= title
             
             ul#nav-mobile.left
-                - if ( !root )
-                    li: a( href=( local ? local : 'javascript:window.history.back();' ) class="back" ): i.material-icons keyboard_arrow_left
-                - else
-                    li: a( href="#" data-activates="slide-out" class="snb" ): i.material-icons menu
+                li: a( href="javascript:void(0)" data-activates="slide-out" )#gh-left: i#gh-left-icon.material-icons menu
+                //-
+                    - if ( !root )
+                        li: a( href=( local ? local : 'javascript:window.history.back();' ) class="back" ): i.material-icons keyboard_arrow_left
+                    - else
+                        li: a( href="#" data-activates="slide-out" class="snb" ): i.material-icons menu
             
             ul#nav-mobile2.right
-                - if ( title == "STORE" )
-                    li: a( href="#!" )#open-search: i.material-icons search
-                - else if ( gnb_right !== false )
-                    li: a( href="#!" )#open-apps: i.material-icons apps
+                //- li: a( href="#!" )#open-apps: i#gh-right-icon.material-icons view_agenda
+                li: a( href="#!" )#open-apps: i#gh-right-icon.material-icons apps
+                //- 
+                    - if ( title == "STORE" )
+                        li: a( href="#!" )#open-search: i.material-icons search
+                    - else if ( gnb_right !== false )
+                        li: a( href="javascript:void(0)" )#open-apps: i#app-icon.material-icons view_agenda
 
 //- Service Nav
 - var grayscale = true;
 - var appItems = true;
 
 #apps( class=( navType == 'b' ? 'no-tween' : 'tween' ) )
-    .clear
-        a( href="#!" )#close-apps: i.material-icons.small clear
     ul( class=( appItems ? '' : 'no-item' ) ).apps-list
         if navType == 'b'
             if appItems

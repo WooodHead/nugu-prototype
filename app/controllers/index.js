@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const co = require('co');
 const router = express.Router();
 
+const Category = mongoose.model( 'Category' );
+
 /* GET home page. */
 router.get('/', (req, res) => {
     res.render( 'index', {
@@ -49,34 +51,49 @@ router.get( '/event', ( req, res ) => {
     })
 });
 
-// router.get( '/account', (req, res) => {
-//     res.render( 'account', {
-//         title: 'Account',
-//         root: false
-//     });
-// });
 
-// router.get( '/store', (req, res)=> {
-//     res.render( 'store', {
-//         title: 'STORE',
-//         root: false,
-//     });
-// });
+// masonry index
+router.get( '/masonry', co.wrap(function* ( req, res ) {
 
-router.get( '/masonry', ( req, res )=> {
+    const categories = yield Category.find().sort({ order: 1 }).populate('childs').exec();
+
     res.render( 'masonry', {
-        title: 'Masonry',
-        root: true
-    });
-});
-
-// grayscale
-router.get( '/grayscale', ( req, res )=> {
-    res.render( 'grayscale', {
         title: 'NUGU',
         root: true,
-        grayscale: true
+        categories: categories
     });
+}));
+
+// guide
+router.get( '/guide', ( req, res ) => {
+    res.render( 'guide', {
+        title: 'NUGU 활용하기',
+        root: false
+    })
 });
+
+// guide sample
+router.get( '/guide/sample', ( req, res ) => {
+    res.render( 'guide/sample', {
+        title: '날씨 활용하기',
+        root: false
+    })
+});
+
+// guide sample2
+router.get( '/guide/sample2', ( req, res ) => {
+    res.render( 'guide/sample2', {
+        title: '날씨 활용하기',
+        root: false
+    })
+});
+
+
+
+
+
+
+
+
 
 module.exports = router;

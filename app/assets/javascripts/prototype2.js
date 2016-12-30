@@ -1,7 +1,8 @@
 'use strict';
 
 // Materialize prototype
-$( '#gh-left' ).sideNav();
+$( '.snb' ).sideNav();
+$( '#apps' ).modal({ opacity: 0.9 });
 
 // Playbacks
 const pb_collapse = document.querySelector( '#pb-collapse' );
@@ -122,7 +123,7 @@ const container = document.querySelector( '#cards' );
 const cardsList = document.getElementById( 'cards' );
 
 const cont = document.querySelector( '#cards' );
-const masonry = new A4BMasonry( cont, { selector: '.cd', size: .5, sizer: '.masonry-size', lazy: true } );
+const masonry = new A4BMasonry( cont, { selector: '.cd', size: 1, lazy: true } );
 masonry.init();
 
 // window resize event ( via A4B Window Resize By Delay )
@@ -135,6 +136,7 @@ class Card {
         this.command = command;
         this.prop = prop;
         this.is_basic = is_basic;
+
         this.elem = document.createElement( 'li' );
         this.elem.classList.add( 'cd' );
         this.elem.classList.add( 'cd-column' );
@@ -144,7 +146,14 @@ class Card {
         if ( this.is_basic )
             this.elem.classList.add( 'basic' );
 
-        // context initv
+        if ( prop.url ) {
+            this.elem.data( 'url', prop.url );
+            this.elem.addEventListener( 'click', function( event ){
+                location.href = prop.url;
+            });
+        }
+
+        // context init
         this.setContext();
     }
 
@@ -189,33 +198,17 @@ class Card {
     }
 
     setContext() {
-        if ( !this.is_basic ) {
-            $( this.elem ).append(`
-                <div class="card-wrap card-color">
-                        <div class="cd-content">
-                            <header>
-                               <i class="medium material-icons">${this.prop.icon}</i>
-                               <h2 class="cd-label">${this.prop.label}</h2>
-                               ${this.basicQuote()}
-                            </header>
-                            ${this.quotes()}
-                        </div>
-                </div>`);
-        } else {
-            $( this.elem ).append(`
-                <div class="card-wrap card-color" style="background-color:${this.prop.color}">
-                    <a href="${this.prop.url}" data-turbolinks-action="replace">
-                        <div class="cd-content">
-                            <header>
-                               <i class="medium material-icons">${this.prop.icon}</i>
-                               <h2 class="cd-label">${this.prop.label}</h2>
-                               ${this.basicQuote()}
-                            </header>
-                            ${this.quotes()}
-                        </div>
-                    </a>
-                </div>`);
-        }
+        $( this.elem ).append(`
+            <div class="card-wrap card-color">
+                <div class="cd-content">
+                    <header>
+                       <i class="medium material-icons">${this.prop.icon}</i>
+                       <h2 class="cd-label">${this.prop.label}</h2>
+                       ${this.basicQuote()}
+                    </header>
+                    ${this.quotes()}
+                </div>
+            </div>`);
     }
 }
 
@@ -277,21 +270,17 @@ class Service {
             url: data.url
         };
 
-        let is_basic = true;
         // create basic card
-        if ( this.label == '타이머' || this.label == '수면예약' || this.label == '날짜/시간' || this.label == '폰찾기' )
-            is_basic = false;
-
-        let basic = new Card( data.basic, card_prop, is_basic );
-        basic_collection.push( basic );
-        // cards_collection.push( basic );
+        let basic = new Card( data.basic, card_prop, true );
+        // basic_collection.push( basic );
+        cards_collection.push( basic );
 
         // create advance card
         for( let k in data.commands ) {
             let command = data.commands[k];
             let advanced_card = new Card( command, card_prop, false );
-            // cards_collection.push( advanced_card );
-            advanced_collection.push( advanced_card );
+            cards_collection.push( advanced_card );
+            // advanced_collection.push( advanced_card );
         }
     }
 }
@@ -363,23 +352,28 @@ function renderRandom() {
     // masonry.init();
 }
 
+/**
 function renderBasicAndRandom() {
+    cards_collection.forEach( card => msnry.remove( card.elem ) );
+    msnry.layout();
 
-    // basic_collection.shuffle( true );
+
+    basic_collection.shuffle( true );
     advanced_collection.shuffle( true );
 
     basic_collection.forEach( card => {
         cardsList.appendChild( card.elem );
-        masonry.add( card.elem )
+        msnry.appended( card.elem );
     });
 
     advanced_collection.forEach( card => {
         cardsList.appendChild( card.elem );
-        masonry.add( card.elem )
+        msnry.appended( card.elem );
     });
 
-
+    msnry.layout();
 }
+*/
 
 // $.getJSON( 'data/category.json' ).done( data => {
 //     console.log( data );
@@ -402,7 +396,7 @@ $.getJSON( 'data/service.json' ).done( data => {
     }
 
     // renderBasicAndRandom();
-    renderBasicAndRandom();
+    renderRandom();
 });
 
 // msnry.layout();
@@ -700,243 +694,79 @@ $( '.service-icon' ).click( function( event ){
 
 
 const appIcon = {
-    view_type: 'column',
+    view_type: 'row',
     width: '50%',
 
     toggleView() {
 
         let container = document.querySelector( '#cards' );
         let items = document.querySelectorAll( '.cd' );
-        let sizer = document.querySelector( '.masonry-size' );
+        let size = 0.5;
+        let removable = 'cd-column';
+        let addable = 'cd-row';
+
 
         switch( this.view_type ) {
             case 'row':
                 this.view_type = 'column';
-                sizer.css( 'width', '100%' );
+                this.width = '100%';
+                size = 1;
+                removable = 'cd-column';
+                addable = 'cd-row';
                 container.removeClass( 'column-list' );
-                globalHeader2.setRight( 'column_view' );
                 break;
-
             case 'column':
                 this.view_type = 'row';
-                sizer.css( 'width', '33.3333%' );
+                this.width = '33.333%';
+                size = .3333;
+                removable = 'cd-row';
+                addable = 'cd-column';
                 container.addClass( 'column-list' );
-                globalHeader2.setRight( 'card_view' );
                 break;
         }
+
+        items.forEach( item => {
+            item.css( 'width', this.width );
+            item.removeClass( removable );
+            item.addClass( addable );
+        });
+
+        masonry.size = size;
 
         setTimeout( function() {
             masonry.init();
         }, 330 );
+
+        // render icon
+        this.render();
+    },
+
+    render() {
+
+        let icon = document.querySelector( '#app-icon' );
+        let icon_label = 'view_agenda';
+
+        if ( this.view_type == 'column' )
+            icon_label = 'dashboard';
+
+        icon.innerHTML = icon_label;
     }
+
 }
 
 document.getElementById( 'open-apps' ).addEventListener( 'click', ( event )=> {
-    appIcon.toggleView();
+    document.querySelector( '#cards' ).hide();
+    document.querySelector( '#apps' ).css( 'height', '100%' );
 }, false);
 
-
-// NUGU Guide
-const userGuide = {
-    status: 'collapse',
-    icon: document.querySelector( '#gc-icon' ),
-    child: document.querySelector( '#gc-music' ),
-
-    collapse() {
-        let icon = document.querySelector( '#gc-icon' );
-        icon.innerHTML = 'keyboard_arrow_down';
-        this.status = 'collapse';
-
-        $( '#gc-music' ).slideUp( 333 );
-    },
-
-    expand() {
-        let icon = document.querySelector( '#gc-icon' );
-        icon.innerHTML = 'keyboard_arrow_up';
-        this.status = 'expand';
-        
-        $( '#gc-music' ).slideDown( 333 );
-    },
-
-    toggle() {
-        // to expand
-        if ( this.status == 'collapse' ) return this.expand();
-
-        // to collapse
-        if ( this.status == 'expand' ) return this.collapse();
-    }
-}
-
-const globalHeader2 = {
-    elem: document.querySelector( '#global-nav' ),
-    logo: document.querySelector( '#logo' ),
-    left: document.querySelector( '#gh-left' ),
-    right: document.querySelector( '#open-apps' ),
-    left_icon: document.querySelector( '#gh-left-icon' ),
-    right_icon: document.querySelector( '#gh-right-icon' ),
-
-    setLogo( string ) {
-        let pageTitle = string ? string : 'NUGU';
-        this.logo.innerHTML = pageTitle;
-    },
-
-    setLeft( status ) {
-
-        switch( status ) {
-            case 'back':
-                this.left_icon.innerHTML = 'keyboard_arrow_left';
-                break;
-            case 'menu':
-                this.left_icon.innerHTML = 'menu';
-                break;
-            case 'none':
-                this.left_icon.innerHTML = '';
-                break;
-            default:
-                this.left_icon.innerHTML = status;
-                break;
-        }
-
-    },
-
-    setRight( status ) {
-        switch( status ) {
-            case 'none':
-                this.right_icon.innerHTML = '';
-                break;
-            case 'close':
-                this.right_icon.innerHTML = 'close';
-                break;
-            case 'help':
-                this.right_icon.innerHTML = 'guide';
-                break;
-            case 'column_view':
-                this.right_icon.innerHTML = 'apps';
-                break;
-            case 'card_view':
-                this.right_icon.innerHTML = 'view_agenda';
-                break;
-            default:
-                this.right_icon.innerHTML = status;
-                break;
-        }        
-    }
-};
-
-const sectionControl = {
-    root: false,
+$( '#apps' ).click( function(){
+    $( '#apps' ).css( 'height', '0%' );
+    $( '#cards' ).show();
+})
 
 
-    back() {
-        // back button
-        $( '#gh-left' ).off( 'click' );
-        // sideNav event
-        $( '#gh-left' ).sideNav();
 
-        // body overflow
-        $( 'body' ).css( 'overflow', 'scroll' );
 
-        // set headers
-        globalHeader2.setLogo( 'NUGU' );
-        globalHeader2.setLeft( 'menu' );
-        globalHeader2.setRight( 'column_view' );
-
-        TweenMax.to( $( '#inner-page' ), .33, { left: '100%', ease: Strong.easeInOut, onComplete: function() {
-            $( '#inner-page' ).html('');
-        }});
-        
-    }, 
-
-    load( url ) {
-        this.root = false
-
-        // jquery dom load
-        $( '#inner-page' ).load( url, ( res, req, b ) => {
-            if ( req !== 'success' ) return false;
-            // res
-            $(this).html( res );
-
-            // nav out
-            $( '#gh-left' ).sideNav( 'hide' );
-
-            // set headers
-            globalHeader2.setLogo( 'NUGU 활용하기' );
-            globalHeader2.setLeft( 'back' );
-            globalHeader2.setRight( 'none' );
-
-            // body overflow
-            $( 'body' ).css( 'overflow', 'hidden' );
-
-            // section in
-            TweenMax.to( $( '#inner-page' ), .33, { left: 0, ease: Strong.easeOut, onComplete: function() {
-                // disable sideNav
-                $( '#gh-left' ).sideNav('destroy');
-
-                // back button
-                $( '#gh-left' ).on( 'click', function( event ){
-                    sectionControl.back();
-                });
-
-                // NUGU Guide open test
-                document.querySelector( '#gc-test' ).addEventListener( 'click', event => userGuide.toggle() );
-
-            }});
-
-        });
-    },
-
-    load2( url ) {
-        this.root = false
-
-        // jquery dom load
-        $( '#inner-page' ).load( url, ( res, req, b ) => {
-            if ( req !== 'success' ) return false;
-            // res
-            $(this).html( res );
-
-            // nav out
-            $( '#gh-left' ).sideNav( 'hide' );
-
-            // set headers
-            globalHeader2.setLogo( '데일리 브리핑 활용하기' );
-            globalHeader2.setLeft( 'none' );
-            globalHeader2.setRight( 'close' );
-
-            // body overflow
-            $( 'body' ).css( 'overflow', 'hidden' );
-
-            // section in
-            TweenMax.to( $( '#inner-page' ), .33, { left: 0, ease: Strong.easeOut, onComplete: function() {
-                // disable sideNav
-                $( '#gh-left' ).sideNav('destroy');
-
-                // back button
-                $( '#gh-left' ).on( 'click', function( event ){
-                    sectionControl.back();
-                });
-
-            }});
-        });
-    }
-}
-
-// window.addEventListener( 'scroll', function(event) {
-//     document.body.style.overflow = 'hidden';
-// }, false);
-
-const sc = document.querySelectorAll( '.section-control' );
-
-$('.section-control').on( 'click', event => {
-    const elem = event.currentTarget;
-    const sectionURL = elem.data( 'section' );
-
-    sectionControl.load( sectionURL );
-
-});
-
-function testFunc() {
-    sectionControl.load2( '/guide/sample' );
-}
 
 
 

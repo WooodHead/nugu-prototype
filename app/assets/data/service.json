@@ -3,7 +3,7 @@
         "melon": {
             "label": "멜론",
             "icon": "library_music",
-            "color": "blue",
+            "color": "#111",
             "url": "/ptype/melon/account",
             "basic": [
                 "아리아, 음악 들려줘",
@@ -62,10 +62,29 @@
                 ]
             }
         },
+        "melon2": {
+            "label": "멜론 어린이",
+            "icon": "music_note",
+            "color": "#111",
+            "url": "/ptype/melon/account",
+            "basic": [
+                "아리아, 음악 들려줘",
+                "아리아, 최신음악 틀어줘",
+                "아리아, 아무 음악이나 틀어줘"
+            ],
+            "commands": {
+                "장르/테마": [
+                    "아리아, 재즈음악 들려줘",
+                    "아리아, 가을음악 들려줘",
+                    "아리아, 이별했을 때 들을만한 음악 들려줘",
+                    "아리아, 50대가 좋아하는 음악 들려줘"
+                ]
+            }
+        },
         "smarthome": {
             "label": "스마트홈",
             "icon": "settings_remote",
-            "color": "pink",
+            "color": "#aaa",
             "url": "/ptype/smarthome",
             "basic": [
                 "아리아, 스마트플러그 켜줘",
@@ -97,10 +116,38 @@
                 ]
             }
         },
+        "Btv": {
+            "label": "Btv 연동",
+            "icon": "tv",
+            "color": "#222",
+            "basic": [
+                "아리아, TV 틀어줘"
+            ],
+            "commands": {
+                "default": [
+                    "아리아, 라디오 틀어줘",
+                    "아리아, 추천 라디오 틀어줘"
+                ]
+            }
+        },
+        "radio": {
+            "label": "라디오",
+            "icon": "radio",
+            "color": "#222",
+            "basic": [
+                "아리아, 라디오 틀어줘"
+            ],
+            "commands": {
+                "default": [
+                    "아리아, 라디오 틀어줘",
+                    "아리아, 추천 라디오 틀어줘"
+                ]
+            }
+        },
         "podcast": {
             "label": "팟캐스트",
             "icon": "hearing",
-            "color": "deep-purple",
+            "color": "#222",
             "basic": [
                 "아리아, 팟캐스트 틀어줘"
             ],
@@ -121,7 +168,7 @@
         "news": {
             "label": "데일리브리핑",
             "icon": "chrome_reader_mode",
-            "color": "indigo",
+            "color": "#222",
             "basic": [
                 "아리아, 뉴스 플레이",
                 "아리아, 뉴스 틀어줘",
@@ -146,11 +193,26 @@
                 ]
             }
         },
+        "11st": {
+            "label": "11번가",
+            "icon": "local_pizza",
+            "color": "#aaa",
+            "basic": [
+                "아리아, 오늘의 픽 알려줘",
+                "아리아, 생수 주문해줘"
+            ],
+            "commands": {
+                "default": [
+                    "아리아, 11번가 주문 현황",
+                    "아리아, 11번가 주문 확인해줘"
+                ]
+            }
+        },
         "domino": {
             "label": "도미노피자",
             "icon": "local_pizza",
             "url": "/ptype/domino",
-            "color": "red",
+            "color": "#aaa",
             "basic": [
                 "아리아, 도미노 피자 주문해줘",
                 "아리아, 도미노 피자 시켜줘"
@@ -172,7 +234,7 @@
         "bbq": {
             "label": "BBQ",
             "icon": "motorcycle",
-            "color": "red",
+            "color": "#aaa",
             "url": "/ptype/bbq",
             "basic": [
                 "아리아, BBQ 주문해줘",
@@ -192,10 +254,62 @@
                 ]
             }
         },
+        "tr": {
+            "label": "길안내",
+            "icon": "traffic",
+            "color": "#AAA",
+            "basic": [
+                "아리아, 출근길 알려줘"
+            ],
+            "commands": {
+                "default": [
+                    "아리아, 오늘뉴스 플레이",
+                    "아리아, 오늘뉴스 틀어줘",
+                    "아리아, 오늘뉴스 틀어",
+                    "아리아, 오늘뉴스 들려줘",
+                    "아리아, 오늘뉴스 재생",
+                    "아리아, 오늘뉴스 알려줘"
+                ],
+                "control": [
+                    "아리아, 어제뉴스 플레이",
+                    "아리아, 어제뉴스 틀어줘",
+                    "아리아, 어제뉴스 틀어",
+                    "아리아, 어제뉴스 들려줘",
+                    "아리아, 어제뉴스 재생",
+                    "아리아, 어제뉴스 알려줘"
+                ]
+            }
+        },
+        "wiki": {
+            "label": "위키피디아",
+            "icon": "language",
+            "color": "#ccc",
+            "basic": [
+                "아리아, 출근길 알려줘"
+            ],
+            "commands": {
+                "default": [
+                    "아리아, 오늘뉴스 플레이",
+                    "아리아, 오늘뉴스 틀어줘",
+                    "아리아, 오늘뉴스 틀어",
+                    "아리아, 오늘뉴스 들려줘",
+                    "아리아, 오늘뉴스 재생",
+                    "아리아, 오늘뉴스 알려줘"
+                ],
+                "control": [
+                    "아리아, 어제뉴스 플레이",
+                    "아리아, 어제뉴스 틀어줘",
+                    "아리아, 어제뉴스 틀어",
+                    "아리아, 어제뉴스 들려줘",
+                    "아리아, 어제뉴스 재생",
+                    "아리아, 어제뉴스 알려줘"
+                ]
+            }
+        },
         "calendar": {
             "label": "구글캘린더",
             "icon": "event",
-            "color": "cyan",
+            "color": "#ccc",
             "basic": [
                 "아리아, 오늘 스케줄 말해줘",
                 "아리아, 일정 알려줘"
@@ -218,7 +332,7 @@
         "alarm": {
             "label": "알람",
             "icon": "notifications_active",
-            "color": "purple",
+            "color": "#ccc",
             "basic": [
                 "아리아, 1시간 있다가 깨워줘",
                 "아리아, 오전 7시 알람 맞춰줘",
@@ -242,7 +356,7 @@
         "weather": {
             "label": "날씨",
             "icon": "wb_sunny",
-            "color": "deep-orange",
+            "color": "#ccc",
             "basic": [
                 "아리아, 날씨 알려줘",
                 "아리아, 날씨 어때",
@@ -274,9 +388,9 @@
             }
         },
         "date": {
-            "label": "Time",
+            "label": "날짜/시간",
             "icon": "event_note",
-            "color": "green",
+            "color": "#9d9d9d",
             "basic": [
                 "아리아, 오늘 며칠이야?",
                 "아리아, 오늘 무슨 요일?",
@@ -316,7 +430,7 @@
         "mood": {
             "label": "무드등",
             "icon": "lightbulb_outline",
-            "color": "blue-grey",
+            "color": "#eee",
             "basic": [
                 "아리아, 주황색 무드등 켜줘",
                 "아리아, 노랑색 무드등으로 바꿔줘",
@@ -395,16 +509,34 @@
         "alert": {
             "label": "긴급알림",
             "icon": "warning",
-            "color": "red",
+            "color": "#eee",
             "basic": [
                 "아리아, 긴급 알림 발송",
                 "아리아, 긴급 알림 보내줘"
             ]
         },
+        "fita": {
+            "label": "프로야구",
+            "icon": "directions_run",
+            "color": "#7d7d7d",
+            "basic": [
+                "아리아, 야구 소식 알려줘",
+                "아리아, ㅁㅁㅁ 알려줘"
+            ]
+        },
+        "fitaa": {
+            "label": "운세",
+            "icon": "cake",
+            "color": "#7d7d7d",
+            "basic": [
+                "아리아, 운세 알려줘",
+                "아리아, ㅁㅁㅁ 알려줘"
+            ]
+        },
         "fit": {
             "label": "7분 운동하기",
             "icon": "fitness_center",
-            "color": "blue",
+            "color": "#aaa",
             "basic": [
                 "아리아, 7분 운동 시작해줘",
                 "아리아, 10분 운동 시작해줘",
