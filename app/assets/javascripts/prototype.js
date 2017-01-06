@@ -3,6 +3,8 @@
 // Materialize prototype
 $( '#gh-left' ).sideNav();
 
+let cg = 'melon';
+
 // Playbacks
 const pb_collapse = document.querySelector( '#pb-collapse' );
 const pb = document.querySelector( '#playback' );
@@ -23,6 +25,15 @@ const pb_open = function() {
     TweenMax.to( pb, 0.6, { height: '100%', ease: Strong.easeOut } );
 }
 pb_collapse.addEventListener( 'click', pb_close );
+
+$( '#pbm-cover' ).click( function(){
+    TweenMax.to( $('#current-playlist'), 0.33, { height: '98%', ease: Strong.easeOut } );
+});
+
+$( '#shit' ).click( function(){
+    TweenMax.to( $('#current-playlist'), 0.33, { height: '0', ease: Strong.easeOut } );
+})
+
 
 // service nav
 
@@ -204,7 +215,7 @@ class Card {
         } else {
             $( this.elem ).append(`
                 <div class="card-wrap card-color" style="background-color:${this.prop.color}">
-                    <a href="${this.prop.url}" data-turbolinks-action="replace">
+                    <a href="javascript:void(0)" data-nc="${this.prop.url}" data-label="${this.prop.label}" class="nc" >
                         <div class="cd-content">
                             <header>
                                <i class="medium material-icons">${this.prop.icon}</i>
@@ -370,40 +381,18 @@ function renderBasicAndRandom() {
 
     basic_collection.forEach( card => {
         cardsList.appendChild( card.elem );
-        masonry.add( card.elem )
+        masonry.add( card.elem );
     });
 
     advanced_collection.forEach( card => {
         cardsList.appendChild( card.elem );
-        masonry.add( card.elem )
+        masonry.add( card.elem );
     });
-
-
 }
 
 // $.getJSON( 'data/category.json' ).done( data => {
 //     console.log( data );
 // } );
-
-$.getJSON( 'data/service.json' ).done( data => {
-    // for( let [key, val] of Object.entries(data.service) ) {
-    for( let key in data.service ) {
-        let val = data.service[key];
-        switch( key ) {
-            case 'skills':
-                val.forEach( skill => createSkill( skill ) );
-                break;
-            case 'events':
-                val.forEach( event => createEvent( event ) );
-                break;
-            default:
-                new Service( val );
-        }
-    }
-
-    // renderBasicAndRandom();
-    renderBasicAndRandom();
-});
 
 // msnry.layout();
 
@@ -739,23 +728,26 @@ document.getElementById( 'open-apps' ).addEventListener( 'click', ( event )=> {
 // NUGU Guide
 const userGuide = {
     status: 'collapse',
-    icon: document.querySelector( '#gc-icon' ),
-    child: document.querySelector( '#gc-music' ),
+    current: $( '#gc-music' ),
+    child: '',
 
     collapse() {
-        let icon = document.querySelector( '#gc-icon' );
-        icon.innerHTML = 'keyboard_arrow_down';
+        this.current.find( 'i' ).html( 'keyboard_arrow_down' );
         this.status = 'collapse';
 
-        $( '#gc-music' ).slideUp( 333 );
+        this.child = $(`#${this.current.data( 'child' )}`);
+        // TweenMax.to( this.child, .33, { height: '0', ease: Strong.easeOut });
+        this.child.slideUp( 333 );
     },
 
     expand() {
-        let icon = document.querySelector( '#gc-icon' );
-        icon.innerHTML = 'keyboard_arrow_up';
+        this.current.find( 'i' ).html( 'keyboard_arrow_up' );
         this.status = 'expand';
-        
-        $( '#gc-music' ).slideDown( 333 );
+    
+        this.child = $(`#${this.current.data( 'child' )}`);
+
+        // TweenMax.to( this.child, .33, { height: '100%', ease: Strong.easeOut });
+        this.child.slideDown( 333 );
     },
 
     toggle() {
@@ -775,6 +767,10 @@ const globalHeader2 = {
     left_icon: document.querySelector( '#gh-left-icon' ),
     right_icon: document.querySelector( '#gh-right-icon' ),
 
+    action ( to ){
+        console.log( to );
+    },
+
     setLogo( string ) {
         let pageTitle = string ? string : 'NUGU';
         this.logo.innerHTML = pageTitle;
@@ -782,12 +778,14 @@ const globalHeader2 = {
 
     setLeft( status ) {
 
+        $( '.gh-lefts' ).hide();
+
         switch( status ) {
             case 'back':
-                this.left_icon.innerHTML = 'keyboard_arrow_left';
+                $( '#gh-back' ).css( 'display', 'block' );
                 break;
             case 'menu':
-                this.left_icon.innerHTML = 'menu';
+                $( '#gh-left' ).css( 'display', 'block' );
                 break;
             case 'none':
                 this.left_icon.innerHTML = '';
@@ -800,20 +798,22 @@ const globalHeader2 = {
     },
 
     setRight( status ) {
+
+        $( '.gh-rights' ).hide();
+
         switch( status ) {
-            case 'none':
-                this.right_icon.innerHTML = '';
-                break;
             case 'close':
-                this.right_icon.innerHTML = 'close';
+                $( '#gh-right-close' ).css( 'display', 'block' );
                 break;
-            case 'help':
-                this.right_icon.innerHTML = 'guide';
+            case 'chat':
+                $( '#gh-right-chat' ).css( 'display', 'block' );
                 break;
             case 'column_view':
+                $( '#open-apps' ).css( 'display', 'block' );
                 this.right_icon.innerHTML = 'apps';
                 break;
             case 'card_view':
+                $( '#open-apps' ).css( 'display', 'block' );
                 this.right_icon.innerHTML = 'view_agenda';
                 break;
             default:
@@ -825,7 +825,6 @@ const globalHeader2 = {
 
 const sectionControl = {
     root: false,
-
 
     back() {
         // back button
@@ -920,12 +919,152 @@ const sectionControl = {
     }
 }
 
+const vc_container = document.getElementById( 'vc-container' );
+
+
+function collectionEvent() {
+    let ug = userGuide;
+
+    $( '.gc-bul' ).click( function( event ){
+        ug.current = $( this );
+        ug.toggle();
+    });
+}
+
+class ViewController {
+    constructor( url, label, right ) {
+        // create dom
+        this.elem = create( 'div' );
+        this.elem.addClass( 'inner-page' );
+        this.label = label;
+        this.right = right ? right : 'chat';
+
+        // append
+        vc_container.appendChild( this.elem );
+
+        // tween
+        this.tween = TweenMax.from( this.elem, 0.55, { left: '100%', ease: Strong.easeOut });
+        this.tween.pause();
+
+        $( this.elem ).load( url, ( res, req, b ) => {
+            $( this ).html( res );
+
+            if ( label == 'NUGU 활용하기' )
+                collectionEvent();
+
+            $( this.elem ).find( '.nc' ).click( function( event ){
+                let $et = $(event.currentTarget);
+                let url = $et.data( 'nc' );
+                let label = $et.data( 'label' );
+                let right = $et.data( 'right' );
+                nc.load( url, label, right );
+            });
+            this.show();
+        });
+    }
+
+    show() {
+        this.tween.resume();
+    }
+
+    hide() {
+        let elem = this.elem;
+        this.tween.eventCallback( 'onReverseComplete', function() {
+            elem.remove();
+        });
+        this.tween.reverse();
+    }
+}
+
+const rightObj = {
+    '멜론': 'none',
+    'none': 'none'
+}
+
+class NavigationControl {
+    constructor () {
+        this.hasChild    = false;
+        this.currentView = 'root';
+        this.header = globalHeader2;
+        this.childs      = [];
+    }
+
+    setHome() {
+        this.header.setLeft( 'menu' );
+        this.header.setRight( 'column_view' );
+        this.header.setLogo( 'NUGU' );
+    }
+
+    setHeader( left, logo, right ) {
+        this.header.setLeft( left )
+        this.header.setLogo( logo );
+        this.header.setRight( right );
+    }
+
+    loadAtSNB( url, label, right ) {
+        let right_icon = right;
+
+        if ( label && rightObj[label] ) {
+            right_icon = rightObj[label];
+        }
+
+        if ( !right )
+            right_icon = 'none';
+
+        this.hasChild = true;
+
+        // hide snb
+        $( '#gh-left' ).sideNav( 'hide' );
+
+        this.setHeader( 'back', label, right_icon );
+        this.childs.push( new ViewController( url, label, right ) )
+    }
+
+    load( url, label, right ) {
+        let right_icon = 'chat';
+
+        if ( label && rightObj[label] ) {
+            right_icon = rightObj[label];
+        }
+
+        if ( !right )
+            right_icon = 'none';
+
+        this.hasChild = true;
+        this.setHeader( 'back', label, right_icon );
+
+        // create and push
+        this.childs.push( new ViewController( url, label, right_icon ) );
+    }
+
+
+    back() {
+        if ( this.hasChild ) {
+            let last = this.childs[this.childs.length - 1];
+            last.hide();
+            this.childs.pop();
+        }
+
+        if ( !this.childs.length ) {
+            this.hasChild = false;
+            this.setHome();
+        } else {
+            let last = this.childs[this.childs.length - 1];
+            this.setHeader( 'back', last.label, last.right );
+        }
+    }
+}
+
+// navigation control;
+const nc = new NavigationControl();
+
 // window.addEventListener( 'scroll', function(event) {
 //     document.body.style.overflow = 'hidden';
 // }, false);
 
 const sc = document.querySelectorAll( '.section-control' );
 
+/*
 $('.section-control').on( 'click', event => {
     const elem = event.currentTarget;
     const sectionURL = elem.data( 'section' );
@@ -933,10 +1072,81 @@ $('.section-control').on( 'click', event => {
     sectionControl.load( sectionURL );
 
 });
+*/
 
 function testFunc() {
     sectionControl.load2( '/guide/sample' );
 }
+
+
+// index init
+$.getJSON( 'data/service.json' ).done( data => {
+    // for( let [key, val] of Object.entries(data.service) ) {
+    for( let key in data.service ) {
+        let val = data.service[key];
+        switch( key ) {
+            case 'skills':
+                val.forEach( skill => createSkill( skill ) );
+                break;
+            case 'events':
+                val.forEach( event => createEvent( event ) );
+                break;
+            default:
+                new Service( val );
+        }
+    }
+
+    // renderBasicAndRandom();
+    renderBasicAndRandom();
+
+    $( '.nc' ).click( function( event ){
+        let $et = $(event.currentTarget);
+        let url = $et.data( 'nc' );
+        let label = $et.data( 'label' );
+        let right = $et.data( 'right' );
+
+
+        if( $et.data( 'snb' ) ) {
+            nc.loadAtSNB( url, label, right );
+        } else {
+            nc.load( url, label, right );
+
+            if ( url == '/ptype/melon/account' ) {
+                event.currentTarget.dataset.nc = '/melon';
+                event.currentTarget.dataset.right = 'chat';
+            }
+        }
+    });
+});
+
+
+// gh-back events
+
+$( '#gh-back' ).on( 'click', function( event ){ nc.back() });
+
+$( '#gh-right-chat' ).on( 'click', function( event ){
+    let cgi = {};
+
+    switch( cg ) {
+        case 'melon':
+            cgi = { label: '멜론 활용하기', url: '/melon-guide', right: false };
+            break;
+        case 'weather':
+            cgi = { label: '날씨 활용하기', url: '/weather-guide', right: false };
+            break;
+    }
+
+    nc.load( cgi.url, cgi.label, cgi.right );
+
+});
+
+
+
+
+
+
+
+
 
 
 

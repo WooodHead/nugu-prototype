@@ -10,6 +10,10 @@ const serviceSchema = new Schema({
     url: String,
     status: String,
     category: String,
+    auth: { 
+        type: String,
+        status: false
+    },
     commands: [ { type: Schema.Types.ObjectId, ref: 'Command' } ]
 });
 

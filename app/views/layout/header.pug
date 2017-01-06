@@ -10,7 +10,7 @@ ul#slide-out.side-nav
             span( class="name" ) 송누구
             span( class="email" ) nugusong@nugu.co.kr
     
-    li: a( href="javascript:void(0)" data-section="/guide" ).section-control.waves-effect <i class="material-icons">lightbulb_outline</i> NUGU 활용하기
+    li: a( href="javascript:void(0)" data-nc="/guide" data-label="NUGU 활용하기" data-right="none" data-snb="true" ).nc.section-control.waves-effect <i class="material-icons">lightbulb_outline</i> NUGU 활용하기
     li: a( href="/ptype/store" ).waves-effect <i class="material-icons">shop</i> 앱마켓
     li: a( href="#!" ).waves-effect <i class="material-icons">receipt</i> 주문내역
     li: a( href="#!" ).waves-effect <i class="material-icons">settings</i> 사용자 설정
@@ -27,21 +27,15 @@ header#global-nav
             a( href="#" class="brand-logo center")#logo= title
             
             ul#nav-mobile.left
-                li: a( href="javascript:void(0)" data-activates="slide-out" )#gh-left: i#gh-left-icon.material-icons menu
-                //-
-                    - if ( !root )
-                        li: a( href=( local ? local : 'javascript:window.history.back();' ) class="back" ): i.material-icons keyboard_arrow_left
-                    - else
-                        li: a( href="#" data-activates="slide-out" class="snb" ): i.material-icons menu
+                li
+                    a( href="javascript:void(0)" data-activates="slide-out" ).gh-lefts#gh-left: i#gh-left-icon.material-icons menu
+                    a( href="javascript:void(0)" ).gh-lefts#gh-back: i.material-icons keyboard_arrow_left
             
             ul#nav-mobile2.right
-                //- li: a( href="#!" )#open-apps: i#gh-right-icon.material-icons view_agenda
-                li: a( href="#!" )#open-apps: i#gh-right-icon.material-icons apps
-                //- 
-                    - if ( title == "STORE" )
-                        li: a( href="#!" )#open-search: i.material-icons search
-                    - else if ( gnb_right !== false )
-                        li: a( href="javascript:void(0)" )#open-apps: i#app-icon.material-icons view_agenda
+                li
+                    a( href="javascript:void(0)" ).gh-rights#open-apps: i#gh-right-icon.material-icons apps
+                    a( href="javascript:void(0)" ).gh-rights#gh-right-chat: i.material-icons chat
+                    a( href="javascript:void(0)" ).gh-rights#gh-right-close: i.material-icons close
 
 //- Service Nav
 - var grayscale = true;
@@ -179,6 +173,47 @@ header#global-nav
                 #pb-volume-selector
 
             #pb-playlist: i.material-icons list
+
+//- current-playlist
+#current-playlist
+    header.clear
+        a( href="javascript:void(0)" ).fl 편집
+        i#shit.material-icons.fr close
+        h5 현재 재생목록
+
+    ul.collection
+        li.collection-item.avatar
+            img( src="images/madeon.jpg" class="circle" )
+            span.title Madeon
+            p Pay no mind
+
+        li.collection-item.avatar
+            img( src="images/madeon.jpg" class="circle" )
+            span.title Madeon
+            p Pay no mind
+
+        li.collection-item.avatar
+            img( src="images/madeon.jpg" class="circle" )
+            span.title Madeon
+            p Pay no mind
+
+        li.collection-item.avatar
+            img( src="images/madeon.jpg" class="circle" )
+            span.title <i class="material-icons this-one">equalizer</i> <b>Madeon</b>
+            p Pay no mind
+
+        li.collection-item.avatar
+            img( src="images/madeon.jpg" class="circle" )
+            span.title Madeon
+            p Pay no mind
+
+        li.collection-item.avatar
+            img( src="images/madeon.jpg" class="circle" )
+            span.title Madeon
+            p Pay no mind
+
+
+
 
 //- pb mini
 #playback-mini.clear

@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 
 // test melon
 router.get('/melon', (req, res) => {
-    res.render( 'melon', {
+    res.render( 'ptype/melon/index', {
         title: 'MELON',
         root: false
     });
@@ -88,9 +88,21 @@ router.get( '/guide/sample2', ( req, res ) => {
     })
 });
 
+// guide sample2
+router.get( '/weather-guide', ( req, res ) => {
+    res.render( 'weather_guide', {
+        title: '날씨 활용하기',
+        root: false
+    })
+});
 
-
-
+// guide sample2
+router.get( '/melon-guide', ( req, res ) => {
+    res.render( 'melon_guide', {
+        title: '날씨 활용하기',
+        root: false
+    })
+});
 
 
 

@@ -1,0 +1,20 @@
+extends layout/management
+
+block content
+    header#global-header
+        div#pi
+            h1 NUGU &amp; PXD
+
+        ul#category-list
+            each category in categories
+                li= category.title
+
+                each child in category.childs
+                    div= child.title
+
+
+        //- ul#service-list
+        //-     each service in services
+        //-         li= service
+    
+    main#main

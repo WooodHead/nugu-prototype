@@ -13,10 +13,10 @@ const Category = mongoose.model( 'Category' );
 // get categories
 router.use( co.wrap( function* ( req, res, next ){
     try {
-        req.categories = yield Category.find();
+        req.categories = yield Category.find().populate( 'childs' ).exec();
         next();
-    } catch( err ) {
-        console.log( err );
+    } catch( e ) {
+        return next( e );
     }
 }));
 
@@ -24,24 +24,23 @@ router.use( co.wrap( function* ( req, res, next ){
 // get services
 router.use( co.wrap( function* ( req, res, next ){
     try {
-        req.services = yield Service.find();
+        req.services = yield Service.find().populate( 'commands' ).exec();
         next();
     } catch( err ) {
-        console.log( err );
+        next( e );
     }
 }));
 
 // management
 router.get( '/', co.wrap( function* ( req, res ){
     // render
-    res.render( 'management/index', {
+    res.render( 'management', {
         title: 'NUGU & PXD',
         categories: req.categories,
         services: req.services,
         csrf: req.csrfToken(),
         root: true
     });
-
 }));
 
 

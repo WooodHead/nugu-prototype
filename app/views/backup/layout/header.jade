@@ -1,0 +1,232 @@
+- var navType = nav_type;
+
+
+//- SNB
+ul#slide-out.side-nav
+    li.userInfo
+        header
+            div.circle-1
+        aside
+            span( class="name" ) 송누구
+            span( class="email" ) nugusong@nugu.co.kr
+    
+    li: a( href="javascript:void(0)" data-nc="/guide" data-label="NUGU 활용하기" data-right="none" data-snb="true" ).nc.section-control.waves-effect <i class="material-icons">lightbulb_outline</i> NUGU 활용하기
+    li: a( href="/ptype/store" ).waves-effect <i class="material-icons">shop</i> 앱마켓
+    li: a( href="#!" ).waves-effect <i class="material-icons">receipt</i> 주문내역
+    li: a( href="#!" ).waves-effect <i class="material-icons">settings</i> 사용자 설정
+    li: a( href="#!" ).waves-effect <i class="material-icons">perm_device_information</i> 디바이스 정보 및 관리
+    br
+    li: a( href="#!" ).waves-effect <i class="material-icons">announcement</i> 공지사항
+    li: a( href="#!" ).waves-effect <i class="material-icons">insert_emoticon</i> 이벤트
+    li: a( href="#!" ).waves-effect <i class="material-icons">help_outline</i> 고객센터
+
+
+header#global-nav
+    nav
+        div#nav.nav-wrapper
+            a( href="#" class="brand-logo center")#logo= title
+            
+            ul#nav-mobile.left
+                li
+                    a( href="javascript:void(0)" data-activates="slide-out" ).gh-lefts#gh-left: i#gh-left-icon.material-icons menu
+                    a( href="javascript:void(0)" ).gh-lefts#gh-back: i.material-icons keyboard_arrow_left
+            
+            ul#nav-mobile2.right
+                li
+                    a( href="javascript:void(0)" ).gh-rights#open-apps: i#gh-right-icon.material-icons apps
+                    a( href="javascript:void(0)" ).gh-rights#gh-right-chat: i.material-icons chat
+                    a( href="javascript:void(0)" ).gh-rights#gh-right-close: i.material-icons close
+
+//- Service Nav
+- var grayscale = true;
+- var appItems = true;
+
+#apps( class=( navType == 'b' ? 'no-tween' : 'tween' ) )
+    ul( class=( appItems ? '' : 'no-item' ) ).apps-list
+        if navType == 'b'
+            if appItems
+                //- begin nav type B
+                li.app-item.suck
+                    div( class=( grayscale ? 'grey' : 'light-blue lighten-2'  ) ).circle-item.waves-effect.waves-light
+                    span 7분 운동하기
+                li.app-item.suck
+                    div( class=( grayscale ? 'grey' : 'blue lighten-1'  ) ).circle-item.waves-effect.waves-light
+                    span 핏 빗
+            else
+                li.app-item-one
+                    p 설치된 앱이 없습니다.<br>앱 마켓에서 더 많은 앱을 둘러보세요.
+                    a( href="#!" ).app-item-one-link 앱 마켓으로 이동 <i class="material-icons">keyboard_arrow_right</i>
+
+
+            //- end navtype B
+        else
+            li.app-item
+                div( class=( grayscale ? 'grey' : 'light-blue lighten-2'  ) ).circle-item.waves-effect.waves-light
+                    i.material-icons.medium.vertical-align music_note
+                span 뮤직
+            li.app-item
+                div( class=( grayscale ? 'grey' : 'blue lighten-1'  ) ).circle-item.waves-effect.waves-light
+                    i.material-icons settings_remote
+                span 스마트홈
+            li.app-item#test2
+                div( class=( grayscale ? 'grey' : 'red lighten-1'  ) ).circle-item.waves-effect.waves-light
+                    i.material-icons video_library
+                span 미디어
+
+            ul#test-childs.childs
+                li.child-item
+                    div( class=( grayscale ? 'grey' : 'red darken-1'  ) ).circle-item.waves-effect.waves-light
+                        i.material-icons hearing
+                    span 팟빵
+                li.child-item
+                    div( class=( grayscale ? 'grey' : 'red darken-1'  ) ).circle-item.waves-effect.waves-light
+                        i.material-icons radio
+                    span 라디오
+                li.child-item
+                    div( class=( grayscale ? 'grey' : 'red darken-1'  ) ).circle-item.waves-effect.waves-light
+                        i.material-icons schedule
+                    span 데일리브리핑
+
+
+            li.app-item
+                div( class=( grayscale ? 'grey' : 'yellow'  ) ).circle-item.waves-effect.waves-light
+                    i.material-icons motorcycle
+                span 주문/배달
+            li.app-item
+                div( class=( grayscale ? 'grey' : 'indigo darken-2'  ) ).circle-item.waves-effect.waves-light
+                    i.material-icons assignment_ind
+                span 개인비서
+            li.app-item
+                div( class=( grayscale ? 'grey' : 'orange lighten-1'  ) ).circle-item.waves-effect.waves-light
+                    i.material-icons accessibility
+                span 유용한기능
+            li.app-item
+                div( class=( grayscale ? 'grey' : 'pink lighten-1'  ) ).circle-item.waves-effect.waves-light
+                    i.material-icons traffic
+                span 교통
+            li.app-item
+                div( class=( grayscale ? 'grey' : 'pink lighten-1'  ) ).circle-item.waves-effect.waves-light
+                    i.material-icons videogame_asset
+                span 오락
+            li#app-button.app-item
+                div( class=( grayscale ? 'grey' : 'pink lighten-1'  ) ).circle-item.waves-effect.waves-light
+                    i.material-icons shop
+                span APP
+
+            ul#test-childs2.childs2
+                li.child-item2
+                    div( class=( grayscale ? 'grey' : 'red darken-1'  ) ).circle-item.waves-effect.waves-light
+                        a( href="/ptype/7min" ).ttt
+                            i.material-icons hearing
+                    span 7분운동
+                li.child-item2
+                    div( class=( grayscale ? 'grey' : 'red darken-1'  ) ).circle-item.waves-effect.waves-light
+                        i.material-icons radio
+                    span Fitbit
+                li.child-item2
+                    div( class=( grayscale ? 'grey' : 'red darken-1'  ) ).circle-item.waves-effect.waves-light
+                        i.material-icons schedule
+                    span JTBC 뉴스룸
+                li.child-item2
+                    div( class=( grayscale ? 'grey' : 'red darken-1'  ) ).circle-item.waves-effect.waves-light
+                        i.material-icons radio
+                    span 오마이셰프
+                li.child-item2
+                    div( class=( grayscale ? 'grey' : 'red darken-1'  ) ).circle-item.waves-effect.waves-light
+                        i.material-icons hearing
+                    span EBS
+
+
+
+//- Playbacks
+#playback
+    .clear
+        header#pb-header
+            #cover
+            a( href="#!" )#pb-collapse: i.material-icons keyboard_arrow_down
+
+            #pb-track
+                #pb-thumb
+                #pb-current
+                    span 1:20
+
+        #pb-control
+            header
+                //- h1 Pay No Mind(feat. Passion Pit)
+                //- h2 Madeon
+                //- h3 Adventure(Deluxe)
+                h1 네박자(feat. Alessia Cara)
+                h2 송대관
+                h3 노래와人生
+            
+            //- playbacks!
+            .playback-container
+                .playbacks.clear
+                    //- a( href="#!" )#pb-playlist: i.material-icons list
+                    a( href="#!" )#pb-prev: i.material-icons.medium skip_previous
+                    a( href="#!" )#pb-play: i.material-icons.medium pause_circle_filled
+                    a( href="#!" )#pb-next: i.material-icons.medium skip_next
+
+            .pb-volume-track
+                #pb-vol: i.material-icons volume_mute
+                #pb-volume-thumb
+                #pb-volume-selector
+
+            #pb-playlist: i.material-icons list
+
+//- current-playlist
+#current-playlist
+    header.clear
+        a( href="javascript:void(0)" ).fl 편집
+        i#shit.material-icons.fr close
+        h5 현재 재생목록
+
+    ul.collection
+        li.collection-item.avatar
+            img( src="images/madeon.jpg" class="circle" )
+            span.title Madeon
+            p Pay no mind
+
+        li.collection-item.avatar
+            img( src="images/madeon.jpg" class="circle" )
+            span.title Madeon
+            p Pay no mind
+
+        li.collection-item.avatar
+            img( src="images/madeon.jpg" class="circle" )
+            span.title Madeon
+            p Pay no mind
+
+        li.collection-item.avatar
+            img( src="images/madeon.jpg" class="circle" )
+            span.title <i class="material-icons this-one">equalizer</i> <b>Madeon</b>
+            p Pay no mind
+
+        li.collection-item.avatar
+            img( src="images/madeon.jpg" class="circle" )
+            span.title Madeon
+            p Pay no mind
+
+        li.collection-item.avatar
+            img( src="images/madeon.jpg" class="circle" )
+            span.title Madeon
+            p Pay no mind
+
+
+
+
+//- pb mini
+#playback-mini.clear
+    #pbm-cover.fl
+        img( src="/images/legend.jpg" )
+    
+    #pbm-info.fl
+        h1 네박자 네박자
+        h2 송대관 - Greatest Song
+    
+    #pbm-pb.fl
+        a(href="#!")#pbm-play: i.material-icons.medium pause_circle_filled
+        a( href="#!" )#pbm-next: i.material-icons.medium fast_forward
+    
+    #pbm-vol.fl
+        i.material-icons volume_up

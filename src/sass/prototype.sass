@@ -58,8 +58,8 @@ nav .brand-logo
     overflow: hidden
 
     nav
-        box-shadow: none
-        background: rgba( 255, 255, 255, 0.3 )
+        box-shadow: 0 0 5px #555
+        background: rgba( 255, 255, 255, 1 )
 
 .nav-wrapper
     background: none
@@ -70,7 +70,6 @@ nav .brand-logo
 #cards
     margin: 0
     list-style: none
-
 
 // quarter
 .q4, .t3
@@ -582,10 +581,44 @@ p.dis
     top: 1em
     left: 1em
 
+// current play list
+#current-playlist
+    position: fixed
+    z-index: 101
+    bottom: 0
+    width: 97%
+    left: 1.5%
+    height: 0
+    // background: rgba( 0, 0, 0, 0.95 )
+    background: rgba( 255, 255, 255, 0.95 )
+    box-shadow: 0 0 20px black
+    border-radius: 15px 15px 0 0
+
+    header
+        padding: 0 0 14px 0
+        h5
+            font-weight: 100
+            font-size: 16px
+            text-align: center
+
+        .fl
+            margin-left: 20px
+
+        .fr
+            margin-right: 20px
+            font-size: 16px
+
+    .collection-item
+        background: rgba( 250, 250, 250, 0.7 )
+        min-height: 0
+
+.this-one
+    color: red
+
 // PLayback mini
 #playback-mini
     position: fixed
-    z-index: 100
+    z-index: 200
     height: 0;
     bottom: -2px
     width: 100%
@@ -884,6 +917,8 @@ ul.apps-list
 
 // user guide index
 #guide
+    border-top: 0 none
+
     li > div > a
         &:link, &:visited
             color: #2d2d2d
@@ -901,9 +936,15 @@ ul.apps-list
     display: none
     background: #FAFAFA
 
-    padding: 1em 0em 1em 3em !important
+    padding: 0
     border-bottom: 1px solid #EDEDED
-    
+        
+    li
+        padding: 0em 0em 0.5em 3em
+
+        &:first-child
+            padding-top: 0.5em
+
     a
         display: block
         @extend .clear
@@ -927,9 +968,39 @@ ul.apps-list
     margin-left: 6px
 
 
+.inner-page
+    position: fixed
+    z-index: 5
+    background: white
+    height: 100%
+    width: 100%
+    left: 0
+    top: 0
+    overflow: scroll
 
 
+.nc-content
+    width: 100%
+    padding-top: 52px
+    padding-bottom: 52px
 
+
+.full-img
+    img
+        width: 100%
+        height: auto
+
+
+.gh-rights, .gh-lefts
+    display: none
+
+#gh-left, #open-apps
+    display: block
+
+
+.full-img
+    width: 100%
+    height: auto
 
 
 

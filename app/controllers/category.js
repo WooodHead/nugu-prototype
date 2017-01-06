@@ -14,11 +14,12 @@ router.param( 'cid', co.wrap( function* ( req, res, next, sid ){
     try {
         req.category = yield Category.findById( cid ).populate('childs').exec();
         if ( !req.service ) return next( Error( 'Service not found' ) );
-    } catch( err ) {
-        return next( err );
+    } catch( e ) {
+        next( e );
     }
 
     next();
+
 }));
 
 // index
@@ -42,23 +43,25 @@ router.post( '/', co.wrap( function* ( req, res ){
         yield category.save();
         req.flash( 'success', 'created' );
         res.redirect( 'back' );
-    } catch( err ) {
+    } catch( e ) {
         req.flash( 'error', 'created faield' );
-        console.log( err )()
+        console.log( e );
     }
 
 }));
 
 // delete
 router.get( '/delete/:sid', co.wrap( function* ( req, res ) {
+    
     try {
         yield req.category.remove();
         req.flash( 'success', 'deleted' );
         res.redirect( 'back' );
     } catch( err ) {
         req.flash( 'error', 'delete failed' );
-        console.log( err );
+        console.log( e );
     }
-}) )
+
+}));
 
 module.exports = router;

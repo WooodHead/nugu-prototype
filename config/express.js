@@ -14,7 +14,7 @@ const session      = require('express-session');
 
 module.exports = (app) => {
     app.set('views', path.join(__dirname, '../app/views'));
-    app.set('view engine', 'jade');
+    app.set('view engine', 'pug');
 
     //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
     app.use(cors());
